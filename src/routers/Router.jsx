@@ -4,6 +4,7 @@ import Home from '../pages/Home'
 import About from '../pages/AboutUs'
 import Header from '../components/Header'
 import Services from '../pages/Services'
+import Industries from '../pages/Industries'
 
 export default function Router() {
   return (
@@ -14,6 +15,8 @@ export default function Router() {
           <Route path="/home" element={<Home />} />
           <Route path="/about" element={<About />} />
           <Route path="/services" element={<Services />} />
+          <Route path="/industries" element={<Industries />} />
+      
         </Routes>
       </BrowserRouter>
     </div>
