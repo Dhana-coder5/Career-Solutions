@@ -1,136 +1,401 @@
+import { useEffect } from "react";
+import {
+  motion,
+  useScroll,
+  useTransform,
+  useSpring,
+} from "framer-motion";
 import { Link } from "react-router-dom";
+import AOS from "aos";
+import "aos/dist/aos.css";
+
+const services = [
+  {
+    number: "01",
+    title: "IT Recruitment",
+    description:
+      "Connect with skilled developers, engineers, analysts and technology professionals.",
+    path: "/services",
+  },
+  {
+    number: "02",
+    title: "Non-IT Recruitment",
+    description:
+      "Find dependable talent across BPO, HR, Finance, Sales, Operations and more.",
+    path: "/services",
+  },
+  {
+    number: "03",
+    title: "Banking Recruitment",
+    description:
+      "Source professionals for banking operations, sales, finance and customer-facing roles.",
+    path: "/services",
+  },
+  {
+    number: "04",
+    title: "Campus Recruitment",
+    description:
+      "Build your future workforce by connecting employers with emerging graduate talent.",
+    path: "/campus-drive",
+  },
+  {
+    number: "05",
+    title: "Bulk Hiring",
+    description:
+      "Scale your recruitment process with structured and efficient bulk hiring support.",
+    path: "/employers",
+  },
+  {
+    number: "06",
+    title: "Vendor Partnership",
+    description:
+      "Collaborate with us for candidate sourcing, staffing and recruitment process support.",
+    path: "/vendor-partnership",
+  },
+];
+
+const industries = [
+  "IT & Technology",
+  "Banking & Finance",
+  "Healthcare",
+  "Education",
+  "BPO & Customer Service",
+  "Retail",
+  "Logistics",
+  "Manufacturing",
+  "E-Commerce",
+  "Professional Services",
+];
+
+const strengths = [
+  "Industry-focused recruitment",
+  "Verified candidate profiles",
+  "Fast candidate sourcing",
+  "Fresher & experienced talent",
+  "Bulk hiring capability",
+  "Dedicated recruitment support",
+  "Employer & candidate assistance",
+  "IT, Non-IT & Banking expertise",
+];
+
+const process = [
+  {
+    number: "01",
+    title: "Understand",
+    description:
+      "We understand your hiring requirements and workforce needs.",
+  },
+  {
+    number: "02",
+    title: "Source",
+    description:
+      "Our team identifies suitable candidates from relevant talent pools.",
+  },
+  {
+    number: "03",
+    title: "Screen",
+    description:
+      "Profiles are reviewed against the role and requirement.",
+  },
+  {
+    number: "04",
+    title: "Connect",
+    description:
+      "Qualified candidates are connected with the right opportunities.",
+  },
+];
+
+const fadeUp = {
+  hidden: {
+    opacity: 0,
+    y: 50,
+  },
+  show: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.7,
+      ease: "easeOut",
+    },
+  },
+};
+
+const staggerContainer = {
+  hidden: {},
+  show: {
+    transition: {
+      staggerChildren: 0.12,
+    },
+  },
+};
+
+const cardAnimation = {
+  hidden: {
+    opacity: 0,
+    y: 40,
+    scale: 0.96,
+  },
+  show: {
+    opacity: 1,
+    y: 0,
+    scale: 1,
+    transition: {
+      duration: 0.6,
+      ease: "easeOut",
+    },
+  },
+};
+
+function Astronaut() {
+  return (
+    <motion.div
+      className="absolute right-[8%] top-[18%] z-20"
+      animate={{
+        y: [0, -18, 0],
+        rotate: [-2, 2, -2],
+      }}
+      transition={{
+        duration: 5,
+        repeat: Infinity,
+        ease: "easeInOut",
+      }}
+    >
+      <svg
+        width="100"
+        height="130"
+        viewBox="0 0 100 130"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        {/* Helmet */}
+        <circle
+          cx="50"
+          cy="30"
+          r="24"
+          fill="#E2E8F0"
+          fillOpacity="0.95"
+        />
+
+        <rect
+          x="32"
+          y="19"
+          width="36"
+          height="23"
+          rx="11"
+          fill="#0F172A"
+        />
+
+        <rect
+          x="37"
+          y="23"
+          width="26"
+          height="13"
+          rx="6"
+          fill="#2563EB"
+          fillOpacity="0.7"
+        />
+
+        {/* Body */}
+        <rect
+          x="32"
+          y="49"
+          width="36"
+          height="45"
+          rx="14"
+          fill="#F8FAFC"
+        />
+
+        <rect
+          x="42"
+          y="57"
+          width="16"
+          height="18"
+          rx="4"
+          fill="#2563EB"
+          fillOpacity="0.8"
+        />
+
+        {/* Arms */}
+        <rect
+          x="20"
+          y="52"
+          width="12"
+          height="35"
+          rx="6"
+          transform="rotate(12 20 52)"
+          fill="#CBD5E1"
+        />
+
+        <rect
+          x="68"
+          y="52"
+          width="12"
+          height="35"
+          rx="6"
+          transform="rotate(-12 68 52)"
+          fill="#CBD5E1"
+        />
+
+        {/* Legs */}
+        <rect
+          x="34"
+          y="88"
+          width="13"
+          height="31"
+          rx="6"
+          fill="#CBD5E1"
+        />
+
+        <rect
+          x="53"
+          y="88"
+          width="13"
+          height="31"
+          rx="6"
+          fill="#CBD5E1"
+        />
+
+        {/* Backpack */}
+        <rect
+          x="25"
+          y="55"
+          width="8"
+          height="28"
+          rx="4"
+          fill="#64748B"
+        />
+      </svg>
+    </motion.div>
+  );
+}
 
 function Home() {
-  const services = [
-    {
-      number: "01",
-      title: "IT Recruitment",
-      description:
-        "Connect with skilled developers, engineers, analysts and technology professionals.",
-      link: "/services",
-    },
-    {
-      number: "02",
-      title: "Non-IT Recruitment",
-      description:
-        "Find dependable talent across BPO, HR, Finance, Sales, Operations and more.",
-      link: "/services",
-    },
-    {
-      number: "03",
-      title: "Banking Recruitment",
-      description:
-        "Source professionals for banking operations, sales, finance and customer-facing roles.",
-      link: "/services",
-    },
-    {
-      number: "04",
-      title: "Campus Recruitment",
-      description:
-        "Build your future workforce by connecting employers with emerging graduate talent.",
-      link: "/campus-drive",
-    },
-    {
-      number: "05",
-      title: "Bulk Hiring",
-      description:
-        "Scale your recruitment process with structured and efficient bulk hiring support.",
-      link: "/employers",
-    },
-    {
-      number: "06",
-      title: "Vendor Partnership",
-      description:
-        "Collaborate with us for candidate sourcing, staffing and recruitment process support.",
-      link: "/vendor-partnership",
-    },
-  ];
+  useEffect(() => {
+    AOS.init({
+      duration: 900,
+      once: true,
+      offset: 80,
+      easing: "ease-out-cubic",
+    });
 
-  const industries = [
-    "IT & Technology",
-    "Banking & Finance",
-    "Healthcare",
-    "Education",
-    "BPO & Customer Service",
-    "Retail",
-    "Logistics",
-    "Manufacturing",
-    "E-Commerce",
-    "Professional Services",
-  ];
+    AOS.refresh();
+  }, []);
 
-  const strengths = [
-    "Industry-focused recruitment",
-    "Verified candidate profiles",
-    "Fast candidate sourcing",
-    "Fresher & experienced talent",
-    "Bulk hiring capability",
-    "Dedicated recruitment support",
-    "Employer & candidate assistance",
-    "IT, Non-IT & Banking expertise",
-  ];
+  const { scrollYProgress } = useScroll();
 
-  const process = [
-    {
-      number: "01",
-      title: "Understand",
-      text: "We understand your hiring requirements and workforce needs.",
-    },
-    {
-      number: "02",
-      title: "Source",
-      text: "Our team identifies suitable candidates from relevant talent pools.",
-    },
-    {
-      number: "03",
-      title: "Screen",
-      text: "Profiles are reviewed against the role and requirement.",
-    },
-    {
-      number: "04",
-      title: "Connect",
-      text: "Qualified candidates are connected with the right opportunities.",
-    },
-  ];
+  const rawHeroY = useTransform(
+    scrollYProgress,
+    [0, 0.35],
+    [0, -100]
+  );
+
+  const heroY = useSpring(rawHeroY, {
+    stiffness: 80,
+    damping: 20,
+  });
 
   return (
     <div className="dark-page overflow-hidden">
 
-      {/* ========================================
+      {/* =========================================================
           HERO
-      ======================================== */}
+      ========================================================= */}
 
-      <section className="relative flex min-h-[calc(100vh-80px)] items-center overflow-hidden">
+      <section className="relative min-h-[calc(100vh-80px)] overflow-hidden">
 
-        {/* Background effects */}
-        <div className="blue-orb -left-40 top-20 opacity-60" />
-        <div className="blue-orb -right-40 bottom-0 opacity-40" />
+        {/* Background glow */}
+        <motion.div
+          className="absolute -left-40 top-10 h-[500px] w-[500px] rounded-full bg-blue-600/10 blur-[120px]"
+          animate={{
+            scale: [1, 1.15, 1],
+            opacity: [0.3, 0.5, 0.3],
+          }}
+          transition={{
+            duration: 7,
+            repeat: Infinity,
+            ease: "easeInOut",
+          }}
+        />
 
-        <div className="absolute inset-0 opacity-[0.035]">
-          <div
-            className="h-full w-full"
-            style={{
-              backgroundImage:
-                "linear-gradient(rgba(96,165,250,0.5) 1px, transparent 1px), linear-gradient(90deg, rgba(96,165,250,0.5) 1px, transparent 1px)",
-              backgroundSize: "70px 70px",
-            }}
-          />
-        </div>
+        <motion.div
+          className="absolute right-[-180px] top-[30%] h-[550px] w-[550px] rounded-full bg-indigo-600/10 blur-[140px]"
+          animate={{
+            scale: [1, 1.2, 1],
+            opacity: [0.2, 0.4, 0.2],
+          }}
+          transition={{
+            duration: 9,
+            repeat: Infinity,
+            ease: "easeInOut",
+          }}
+        />
 
-        <div className="page-container relative py-24 lg:py-32">
+        {/* Stars */}
+        <span className="star star-small left-[8%] top-[18%]" />
+        <span className="star left-[17%] top-[72%]" />
+        <span className="star star-large left-[31%] top-[22%]" />
+        <span className="star-small star left-[43%] top-[78%]" />
+        <span className="star left-[55%] top-[12%]" />
+        <span className="star-large star left-[69%] top-[34%]" />
+        <span className="star-small star left-[80%] top-[76%]" />
+        <span className="star left-[91%] top-[20%]" />
 
-          <div className="grid items-center gap-16 lg:grid-cols-[1.2fr_0.8fr]">
+        {/* Shooting stars */}
+        <span className="shooting-star left-[8%] top-[20%]" />
+        <span
+          className="shooting-star left-[58%] top-[10%]"
+          style={{ animationDelay: "4s" }}
+        />
 
-            {/* Hero Content */}
-            <div>
+        {/* Moon */}
+        <motion.div
+          className="space-moon absolute -right-20 top-[58%] scale-90 opacity-30"
+          animate={{
+            y: [0, -15, 0],
+          }}
+          transition={{
+            duration: 6,
+            repeat: Infinity,
+            ease: "easeInOut",
+          }}
+        />
 
-              <div className="animate-fade-up">
+        {/* Planet */}
+        <motion.div
+          className="space-planet absolute left-[3%] top-[65%] scale-50 opacity-30"
+          animate={{
+            y: [0, 20, 0],
+            rotate: [0, 10, 0],
+          }}
+          transition={{
+            duration: 8,
+            repeat: Infinity,
+            ease: "easeInOut",
+          }}
+        />
+
+        <div className="page-container relative z-10 flex min-h-[calc(100vh-80px)] items-center">
+
+          <div className="grid w-full items-center gap-12 py-20 lg:grid-cols-2">
+
+            {/* LEFT */}
+            <motion.div
+              variants={staggerContainer}
+              initial="hidden"
+              animate="show"
+              className="max-w-3xl"
+            >
+
+              <motion.div variants={fadeUp}>
                 <span className="section-label">
                   Career Solutions Pvt Ltd
                 </span>
-              </div>
+              </motion.div>
 
-              <h1 className="mt-7 max-w-4xl text-5xl font-bold leading-[1.05] tracking-tight text-white sm:text-6xl lg:text-7xl animate-fade-up delay-100">
+              <motion.h1
+                variants={fadeUp}
+                className="mt-6 text-5xl font-bold leading-[1.05] tracking-tight sm:text-6xl lg:text-7xl"
+              >
                 Hire Talent.
                 <br />
                 <span className="gradient-text">
@@ -138,20 +403,20 @@ function Home() {
                 </span>
                 <br />
                 Grow Together.
-              </h1>
+              </motion.h1>
 
-              <p className="mt-7 max-w-2xl text-base leading-8 text-slate-400 sm:text-lg animate-fade-up delay-200">
-                Connecting employers with the right talent across
-                <span className="font-medium text-slate-200">
-                  {" "}IT, Non-IT & Banking sectors.
-                </span>
-                {" "}We create meaningful connections between businesses,
-                professionals and emerging talent.
-              </p>
+              <motion.p
+                variants={fadeUp}
+                className="mt-7 max-w-2xl text-lg leading-8 text-slate-300"
+              >
+                Connecting Employers with the Right Talent Across
+                IT, Non-IT & Banking Sectors.
+              </motion.p>
 
-              {/* CTA */}
-              <div className="mt-9 flex flex-col gap-4 sm:flex-row animate-fade-up delay-300">
-
+              <motion.div
+                variants={fadeUp}
+                className="mt-9 flex flex-wrap gap-4"
+              >
                 <Link
                   to="/employers"
                   className="btn-primary group"
@@ -171,510 +436,665 @@ function Home() {
                     →
                   </span>
                 </Link>
+              </motion.div>
 
-              </div>
-
-              {/* Trust points */}
-              <div className="mt-10 flex flex-wrap gap-x-7 gap-y-3 text-sm text-slate-500 animate-fade-up delay-400">
-                <span>✓ IT Recruitment</span>
-                <span>✓ Non-IT Recruitment</span>
-                <span>✓ Banking Recruitment</span>
-                <span>✓ Campus Hiring</span>
-              </div>
-
-            </div>
-
-            {/* Hero Visual */}
-            <div className="relative hidden lg:block">
-
-              <div className="relative mx-auto aspect-square max-w-[480px]">
-
-                {/* Outer glow */}
-                <div className="absolute inset-8 rounded-full bg-blue-600/10 blur-3xl" />
-
-                {/* Main circle */}
-                <div className="absolute inset-10 rounded-full border border-blue-400/20 bg-gradient-to-br from-blue-500/10 to-transparent backdrop-blur-sm" />
-
-                {/* Inner circle */}
-                <div className="absolute inset-24 rounded-full border border-blue-400/10 bg-slate-900/60" />
-
-                {/* Center */}
-                <div className="absolute left-1/2 top-1/2 flex h-32 w-32 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-3xl border border-blue-400/20 bg-blue-600/10 shadow-2xl shadow-blue-900/40 backdrop-blur-xl animate-float">
-                  <div className="text-center">
-                    <div className="text-3xl font-bold gradient-text">
-                      CS
-                    </div>
-                    <div className="mt-1 text-[10px] uppercase tracking-[0.2em] text-slate-500">
-                      Careers
-                    </div>
-                  </div>
-                </div>
-
-                {/* Floating cards */}
-                <div className="absolute right-0 top-20 rounded-2xl border border-white/10 bg-slate-900/80 p-4 shadow-2xl backdrop-blur-xl animate-float">
-                  <div className="text-xs text-slate-500">
-                    Talent
-                  </div>
-                  <div className="mt-1 font-semibold text-white">
-                    Right People
-                  </div>
-                </div>
-
-                <div className="absolute bottom-20 left-0 rounded-2xl border border-white/10 bg-slate-900/80 p-4 shadow-2xl backdrop-blur-xl animate-float">
-                  <div className="text-xs text-slate-500">
-                    Opportunities
-                  </div>
-                  <div className="mt-1 font-semibold text-white">
-                    Right Careers
-                  </div>
-                </div>
-
-                <div className="absolute bottom-8 right-16 rounded-xl border border-blue-400/20 bg-blue-600/10 px-4 py-3 backdrop-blur-xl">
-                  <span className="text-sm font-medium text-blue-300">
-                    Connecting Futures
-                  </span>
-                </div>
-
-              </div>
-
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ========================================
-          INTRO
-      ======================================== */}
-
-      <section className="dark-section-alt border-y border-white/5">
-        <div className="page-container py-20 lg:py-28">
-
-          <div className="grid gap-12 lg:grid-cols-[0.8fr_1.2fr] lg:items-center">
-
-            <div>
-              <span className="section-label">
-                Who We Are
-              </span>
-
-              <h2 className="mt-5 text-3xl font-bold leading-tight text-white sm:text-4xl">
-                Building meaningful connections between{" "}
-                <span className="gradient-text">
-                  talent and opportunity.
-                </span>
-              </h2>
-            </div>
-
-            <div>
-              <p className="text-base leading-8 text-slate-400 sm:text-lg">
-                Career Solutions Pvt Ltd is focused on connecting businesses
-                with the talent they need while helping professionals discover
-                meaningful career opportunities.
-              </p>
-
-              <p className="mt-5 text-base leading-8 text-slate-500">
-                From technology and banking to non-IT functions and campus
-                recruitment, our approach is built around understanding
-                requirements, identifying relevant talent and creating
-                connections that work for both employers and candidates.
-              </p>
-
-              <Link
-                to="/about"
-                className="mt-7 inline-flex items-center gap-2 font-semibold text-blue-400 transition-all duration-300 hover:gap-3 hover:text-blue-300"
+              <motion.div
+                variants={fadeUp}
+                className="mt-10 flex flex-wrap gap-x-7 gap-y-3 text-sm text-slate-400"
               >
-                Discover our story
-                <span>→</span>
-              </Link>
-            </div>
+                {["IT", "Non-IT", "Banking", "Campus"].map(
+                  (item) => (
+                    <span
+                      key={item}
+                      className="flex items-center gap-2"
+                    >
+                      <span className="h-1.5 w-1.5 rounded-full bg-blue-500" />
+                      {item} Recruitment
+                    </span>
+                  )
+                )}
+              </motion.div>
 
+            </motion.div>
+
+            {/* RIGHT SPACE VISUAL */}
+            <motion.div
+              style={{ y: heroY }}
+              className="relative hidden h-[600px] lg:block"
+            >
+
+              {/* Large orbital rings */}
+              <motion.div
+                className="absolute left-1/2 top-1/2 h-[440px] w-[440px] -translate-x-1/2 -translate-y-1/2 rounded-full border border-blue-500/20"
+                animate={{ rotate: 360 }}
+                transition={{
+                  duration: 35,
+                  repeat: Infinity,
+                  ease: "linear",
+                }}
+              />
+
+              <motion.div
+                className="absolute left-1/2 top-1/2 h-[330px] w-[330px] -translate-x-1/2 -translate-y-1/2 rounded-full border border-blue-400/10"
+                animate={{ rotate: -360 }}
+                transition={{
+                  duration: 25,
+                  repeat: Infinity,
+                  ease: "linear",
+                }}
+              />
+
+              {/* Center glow */}
+              <motion.div
+                className="absolute left-1/2 top-1/2 h-64 w-64 -translate-x-1/2 -translate-y-1/2 rounded-full bg-blue-600/20 blur-[90px]"
+                animate={{
+                  scale: [1, 1.2, 1],
+                }}
+                transition={{
+                  duration: 4,
+                  repeat: Infinity,
+                }}
+              />
+
+              {/* Rocket */}
+              <motion.div
+                className="absolute bottom-[15%] left-[12%] z-20"
+                animate={{
+                  y: [0, -15, 0],
+                  rotate: [-5, 3, -5],
+                }}
+                transition={{
+                  duration: 5,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                }}
+              >
+                <div className="space-rocket">
+                  <div className="space-rocket-body">
+                    <div className="space-rocket-window" />
+                  </div>
+                  <div className="space-rocket-flame" />
+                </div>
+              </motion.div>
+
+              {/* Astronaut */}
+              <Astronaut />
+
+              {/* Main glass card */}
+              <motion.div
+                className="absolute left-1/2 top-1/2 z-10 w-[280px] -translate-x-1/2 -translate-y-1/2"
+                animate={{
+                  y: [0, -10, 0],
+                }}
+                transition={{
+                  duration: 5,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                }}
+              >
+                <div className="premium-card rounded-3xl p-8 text-center">
+
+                  <div className="mx-auto mb-5 flex h-16 w-16 items-center justify-center rounded-2xl bg-blue-500/10 ring-1 ring-blue-400/20">
+                    <span className="text-3xl">✦</span>
+                  </div>
+
+                  <p className="text-xs font-semibold uppercase tracking-[0.25em] text-blue-400">
+                    Career Solutions
+                  </p>
+
+                  <h3 className="mt-3 text-2xl font-bold text-white">
+                    Connecting Futures
+                  </h3>
+
+                  <p className="mt-3 text-sm leading-6 text-slate-400">
+                    People, opportunities and businesses connected
+                    through meaningful recruitment.
+                  </p>
+
+                </div>
+              </motion.div>
+
+              {/* Floating card - People */}
+              <motion.div
+                className="absolute right-[2%] top-[18%] z-30"
+                animate={{
+                  y: [0, -12, 0],
+                }}
+                transition={{
+                  duration: 4,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                }}
+              >
+                <div className="premium-card rounded-2xl px-5 py-4">
+                  <p className="text-xs text-slate-400">
+                    Talent
+                  </p>
+                  <p className="mt-1 text-lg font-semibold text-white">
+                    Right People
+                  </p>
+                </div>
+              </motion.div>
+
+              {/* Floating card - Careers */}
+              <motion.div
+                className="absolute bottom-[18%] right-[5%] z-30"
+                animate={{
+                  y: [0, 12, 0],
+                }}
+                transition={{
+                  duration: 4.5,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                }}
+              >
+                <div className="premium-card rounded-2xl px-5 py-4">
+                  <p className="text-xs text-slate-400">
+                    Opportunities
+                  </p>
+                  <p className="mt-1 text-lg font-semibold text-white">
+                    Right Careers
+                  </p>
+                </div>
+              </motion.div>
+
+            </motion.div>
           </div>
         </div>
       </section>
 
-      {/* ========================================
-          SERVICES
-      ======================================== */}
+      {/* =========================================================
+          WHO WE ARE
+      ========================================================= */}
 
-      <section className="dark-section">
-        <div className="page-container py-20 lg:py-28">
+      <section className="dark-section relative py-24">
 
-          <div className="flex flex-col justify-between gap-6 md:flex-row md:items-end">
+        <div className="page-container">
 
-            <div>
-              <span className="section-label">
-                What We Do
+          <div
+            data-aos="fade-up"
+            className="mx-auto max-w-4xl text-center"
+          >
+            <span className="section-label">
+              Who We Are
+            </span>
+
+            <h2 className="mt-5 text-4xl font-bold tracking-tight sm:text-5xl">
+              Recruitment built around{" "}
+              <span className="gradient-text">
+                people and possibilities.
               </span>
+            </h2>
 
-              <h2 className="mt-5 max-w-2xl text-3xl font-bold text-white sm:text-4xl lg:text-5xl">
-                Recruitment solutions designed around your{" "}
-                <span className="gradient-text">
-                  goals.
-                </span>
-              </h2>
-            </div>
+            <p className="mx-auto mt-6 max-w-3xl text-lg leading-8 text-slate-400">
+              Career Solutions connects employers, candidates and
+              institutions through structured recruitment solutions
+              designed to create meaningful long-term connections.
+            </p>
+
+            <p className="mx-auto mt-5 max-w-3xl text-base leading-7 text-slate-500">
+              From fresh graduates beginning their careers to
+              experienced professionals and organizations building
+              their teams, we help create the right connection.
+            </p>
 
             <Link
-              to="/services"
-              className="hidden text-sm font-semibold text-blue-400 transition-colors hover:text-blue-300 md:block"
+              to="/about"
+              className="mt-8 inline-flex items-center gap-2 font-semibold text-blue-400 transition hover:text-blue-300"
             >
-              Explore all services →
+              Learn More About Us →
             </Link>
-
           </div>
 
-          <div className="mt-12 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+        </div>
+      </section>
 
-            {services.map((service, index) => (
-              <Link
+      {/* =========================================================
+          SERVICES
+      ========================================================= */}
+
+      <section className="dark-section-alt relative py-24">
+
+        <div className="page-container">
+
+          <div
+            data-aos="fade-right"
+            className="max-w-3xl"
+          >
+            <span className="section-label">
+              What We Do
+            </span>
+
+            <h2 className="mt-5 text-4xl font-bold sm:text-5xl">
+              Recruitment solutions for{" "}
+              <span className="gradient-text">
+                every hiring need.
+              </span>
+            </h2>
+
+            <p className="mt-6 text-lg leading-8 text-slate-400">
+              From technology and banking to non-IT roles, campus
+              recruitment and bulk hiring, our services are designed
+              around real workforce requirements.
+            </p>
+          </div>
+
+          <motion.div
+            variants={staggerContainer}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true, amount: 0.15 }}
+            className="mt-14 grid gap-6 md:grid-cols-2 lg:grid-cols-3"
+          >
+
+            {services.map((service) => (
+              <motion.div
                 key={service.number}
-                to={service.link}
-                className={`premium-card group p-7 animate-fade-up ${
-                  index % 3 === 1
-                    ? "delay-100"
-                    : index % 3 === 2
-                      ? "delay-200"
-                      : ""
-                }`}
+                variants={cardAnimation}
+                whileHover={{
+                  y: -10,
+                  scale: 1.02,
+                }}
+                transition={{
+                  type: "spring",
+                  stiffness: 250,
+                  damping: 18,
+                }}
+                className="premium-card group rounded-3xl p-7"
               >
 
                 <div className="flex items-start justify-between">
-                  <span className="text-sm font-semibold text-blue-500">
+
+                  <span className="text-sm font-bold text-blue-500">
                     {service.number}
                   </span>
 
                   <span className="text-slate-600 transition-all duration-300 group-hover:translate-x-1 group-hover:text-blue-400">
                     ↗
                   </span>
+
                 </div>
 
-                <h3 className="mt-10 text-xl font-semibold text-white">
+                <h3 className="mt-8 text-xl font-semibold text-white">
                   {service.title}
                 </h3>
 
-                <p className="mt-3 text-sm leading-7 text-slate-500">
+                <p className="mt-4 text-sm leading-7 text-slate-400">
                   {service.description}
                 </p>
 
-                <div className="mt-6 h-px w-10 bg-blue-500/40 transition-all duration-300 group-hover:w-20 group-hover:bg-blue-400" />
+                <Link
+                  to={service.path}
+                  className="mt-6 inline-flex text-sm font-semibold text-blue-400 transition hover:text-blue-300"
+                >
+                  Explore Service →
+                </Link>
 
-              </Link>
+              </motion.div>
             ))}
 
-          </div>
-
-          <Link
-            to="/services"
-            className="mt-8 inline-flex text-sm font-semibold text-blue-400 md:hidden"
-          >
-            Explore all services →
-          </Link>
-
+          </motion.div>
         </div>
       </section>
 
-      {/* ========================================
+      {/* =========================================================
           INDUSTRIES
-      ======================================== */}
+      ========================================================= */}
 
-      <section className="dark-section-alt border-y border-white/5">
-        <div className="page-container py-20 lg:py-28">
+      <section className="dark-section relative py-24">
 
-          <div className="max-w-3xl">
+        <div className="page-container">
+
+          <div
+            data-aos="zoom-in"
+            className="mx-auto max-w-3xl text-center"
+          >
             <span className="section-label">
               Industries
             </span>
 
-            <h2 className="mt-5 text-3xl font-bold text-white sm:text-4xl lg:text-5xl">
-              Talent across industries that{" "}
+            <h2 className="mt-5 text-4xl font-bold sm:text-5xl">
+              Talent across{" "}
               <span className="gradient-text">
-                keep businesses moving.
+                multiple industries.
               </span>
             </h2>
 
-            <p className="mt-5 leading-8 text-slate-500">
-              Our recruitment focus spans multiple sectors, allowing us to
-              connect candidates and employers across diverse workforce needs.
+            <p className="mt-6 text-lg leading-8 text-slate-400">
+              Our recruitment expertise extends across diverse
+              industries and workforce requirements.
             </p>
           </div>
 
-          <div className="mt-12 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-5">
+          <motion.div
+            variants={staggerContainer}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true, amount: 0.15 }}
+            className="mt-14 grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-5"
+          >
 
             {industries.map((industry, index) => (
-              <div
+              <motion.div
                 key={industry}
-                className="group rounded-xl border border-white/8 bg-white/[0.025] px-5 py-5 transition-all duration-300 hover:-translate-y-1 hover:border-blue-500/30 hover:bg-blue-500/[0.06]"
+                variants={cardAnimation}
+                whileHover={{
+                  y: -7,
+                  scale: 1.03,
+                }}
+                className="group rounded-2xl border border-white/10 bg-white/[0.03] p-6 text-center backdrop-blur-md transition-all duration-300 hover:border-blue-500/40 hover:bg-blue-500/[0.06]"
               >
-                <span className="text-xs text-blue-500">
-                  {String(index + 1).padStart(2, "0")}
-                </span>
 
-                <p className="mt-4 text-sm font-medium text-slate-300 transition-colors group-hover:text-white">
+                <div className="mx-auto mb-4 flex h-10 w-10 items-center justify-center rounded-xl bg-blue-500/10 text-sm font-bold text-blue-400 transition-transform duration-300 group-hover:scale-110">
+                  {String(index + 1).padStart(2, "0")}
+                </div>
+
+                <p className="text-sm font-medium leading-6 text-slate-300 group-hover:text-white">
                   {industry}
                 </p>
-              </div>
+
+              </motion.div>
             ))}
 
-          </div>
-
-          <Link
-            to="/industries"
-            className="mt-8 inline-flex items-center gap-2 text-sm font-semibold text-blue-400 transition-all hover:gap-3"
-          >
-            View industry expertise
-            <span>→</span>
-          </Link>
-
-        </div>
-      </section>
-
-      {/* ========================================
-          WHY CHOOSE US
-      ======================================== */}
-
-      <section className="dark-section">
-        <div className="page-container py-20 lg:py-28">
-
-          <div className="grid gap-14 lg:grid-cols-[0.75fr_1.25fr]">
-
-            <div>
-              <span className="section-label">
-                Why Career Solutions
-              </span>
-
-              <h2 className="mt-5 text-3xl font-bold text-white sm:text-4xl">
-                Recruitment built around{" "}
-                <span className="gradient-text">
-                  people.
-                </span>
-              </h2>
-
-              <p className="mt-5 leading-8 text-slate-500">
-                We focus on creating a recruitment experience that is
-                structured, responsive and aligned with the needs of both
-                employers and candidates.
-              </p>
-
-              <Link
-                to="/about"
-                className="mt-7 inline-flex items-center gap-2 text-sm font-semibold text-blue-400 transition-all hover:gap-3"
-              >
-                Learn more about us
-                <span>→</span>
-              </Link>
-            </div>
-
-            <div className="grid gap-3 sm:grid-cols-2">
-
-              {strengths.map((strength, index) => (
-                <div
-                  key={strength}
-                  className="group flex items-start gap-4 rounded-xl border border-white/8 bg-white/[0.02] p-5 transition-all duration-300 hover:border-blue-500/25 hover:bg-blue-500/[0.04]"
-                >
-                  <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-blue-600/10 text-xs font-semibold text-blue-400">
-                    {String(index + 1).padStart(2, "0")}
-                  </span>
-
-                  <span className="pt-1 text-sm leading-6 text-slate-400 transition-colors group-hover:text-white">
-                    {strength}
-                  </span>
-                </div>
-              ))}
-
-            </div>
-
-          </div>
-        </div>
-      </section>
-
-      {/* ========================================
-          PROCESS
-      ======================================== */}
-
-      <section className="dark-section-alt border-y border-white/5">
-        <div className="page-container py-20 lg:py-28">
-
-          <div className="text-center">
-            <span className="section-label">
-              Our Approach
-            </span>
-
-            <h2 className="mt-5 text-3xl font-bold text-white sm:text-4xl lg:text-5xl">
-              From requirement to{" "}
-              <span className="gradient-text">
-                opportunity.
-              </span>
-            </h2>
-          </div>
-
-          <div className="mt-14 grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-
-            {process.map((step) => (
-              <div
-                key={step.number}
-                className="premium-card p-7"
-              >
-                <span className="text-3xl font-bold text-blue-500/40">
-                  {step.number}
-                </span>
-
-                <h3 className="mt-8 text-lg font-semibold text-white">
-                  {step.title}
-                </h3>
-
-                <p className="mt-3 text-sm leading-7 text-slate-500">
-                  {step.text}
-                </p>
-              </div>
-            ))}
-
-          </div>
+          </motion.div>
 
           <div className="mt-10 text-center">
             <Link
-              to="/contact"
-              className="inline-flex items-center gap-2 text-sm font-semibold text-blue-400 transition-all hover:gap-3"
+              to="/industries"
+              className="font-semibold text-blue-400 hover:text-blue-300"
             >
-              Talk to our recruitment team
-              <span>→</span>
+              Explore All Industries →
             </Link>
           </div>
 
         </div>
       </section>
 
-      {/* ========================================
+      {/* =========================================================
+          WHY CHOOSE US
+      ========================================================= */}
+
+      <section className="dark-section-alt relative py-24">
+
+        <div className="page-container">
+
+          <div
+            data-aos="fade-up"
+            className="max-w-3xl"
+          >
+            <span className="section-label">
+              Why Career Solutions
+            </span>
+
+            <h2 className="mt-5 text-4xl font-bold sm:text-5xl">
+              Built for{" "}
+              <span className="gradient-text">
+                better connections.
+              </span>
+            </h2>
+          </div>
+
+          <motion.div
+            variants={staggerContainer}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true, amount: 0.15 }}
+            className="mt-14 grid gap-4 sm:grid-cols-2 lg:grid-cols-4"
+          >
+
+            {strengths.map((strength, index) => (
+              <motion.div
+                key={strength}
+                variants={cardAnimation}
+                whileHover={{
+                  y: -8,
+                }}
+                className="premium-card rounded-2xl p-6"
+              >
+
+                <div className="mb-5 flex h-10 w-10 items-center justify-center rounded-xl bg-blue-500/10 text-sm font-bold text-blue-400">
+                  {String(index + 1).padStart(2, "0")}
+                </div>
+
+                <p className="text-sm font-medium leading-6 text-slate-300">
+                  {strength}
+                </p>
+
+              </motion.div>
+            ))}
+
+          </motion.div>
+
+        </div>
+      </section>
+
+      {/* =========================================================
+          PROCESS
+      ========================================================= */}
+
+      <section className="dark-section relative py-24">
+
+        <div className="page-container">
+
+          <div
+            data-aos="fade-up"
+            className="mx-auto max-w-3xl text-center"
+          >
+            <span className="section-label">
+              Our Process
+            </span>
+
+            <h2 className="mt-5 text-4xl font-bold sm:text-5xl">
+              Simple process.{" "}
+              <span className="gradient-text">
+                Strong results.
+              </span>
+            </h2>
+
+            <p className="mt-6 text-lg leading-8 text-slate-400">
+              A structured recruitment journey designed to make
+              hiring easier and opportunities more accessible.
+            </p>
+          </div>
+
+          <motion.div
+            variants={staggerContainer}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true, amount: 0.15 }}
+            className="relative mt-16 grid gap-6 md:grid-cols-2 lg:grid-cols-4"
+          >
+
+            {/* Connecting line */}
+            <div className="absolute left-[12%] right-[12%] top-12 hidden h-px bg-gradient-to-r from-transparent via-blue-500/40 to-transparent lg:block" />
+
+            {process.map((step) => (
+              <motion.div
+                key={step.number}
+                variants={cardAnimation}
+                className="relative z-10"
+              >
+
+                <motion.div
+                  whileHover={{
+                    scale: 1.08,
+                    rotate: 2,
+                  }}
+                  className="premium-card rounded-3xl p-7 text-center"
+                >
+
+                  <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full border border-blue-500/30 bg-blue-500/10 text-lg font-bold text-blue-400 shadow-[0_0_30px_rgba(37,99,235,0.15)]">
+                    {step.number}
+                  </div>
+
+                  <h3 className="mt-7 text-xl font-semibold text-white">
+                    {step.title}
+                  </h3>
+
+                  <p className="mt-4 text-sm leading-7 text-slate-400">
+                    {step.description}
+                  </p>
+
+                </motion.div>
+
+              </motion.div>
+            ))}
+
+          </motion.div>
+
+          <div
+            data-aos="fade-up"
+            className="mt-12 text-center"
+          >
+            <Link
+              to="/contact"
+              className="btn-secondary"
+            >
+              Start a Conversation →
+            </Link>
+          </div>
+
+        </div>
+      </section>
+
+      {/* =========================================================
           DUAL CTA
-      ======================================== */}
+      ========================================================= */}
 
-      <section className="dark-section">
-        <div className="page-container py-20 lg:py-28">
+      <section className="dark-section-alt relative py-20">
 
-          <div className="grid gap-5 lg:grid-cols-2">
+        <div className="page-container">
 
-            {/* Employer */}
-            <div className="relative overflow-hidden rounded-3xl border border-blue-500/20 bg-gradient-to-br from-blue-600/15 via-blue-600/5 to-transparent p-8 sm:p-10">
+          <div className="grid gap-6 md:grid-cols-2">
 
-              <div className="blue-orb -right-32 -top-32 opacity-30" />
+            <motion.div
+              data-aos="fade-right"
+              whileHover={{ scale: 1.02 }}
+              className="premium-card rounded-3xl p-8 md:p-10"
+            >
 
-              <div className="relative">
-                <span className="text-xs font-bold uppercase tracking-[0.18em] text-blue-400">
-                  For Employers
-                </span>
+              <span className="text-sm font-semibold uppercase tracking-[0.2em] text-blue-400">
+                For Employers
+              </span>
 
-                <h3 className="mt-5 max-w-md text-2xl font-bold text-white sm:text-3xl">
-                  Looking for the right talent?
-                </h3>
+              <h3 className="mt-5 text-3xl font-bold">
+                Build your team with the right talent.
+              </h3>
 
-                <p className="mt-4 max-w-lg leading-7 text-slate-400">
-                  Tell us what you are looking for and let us help you connect
-                  with relevant candidates.
-                </p>
+              <p className="mt-4 leading-7 text-slate-400">
+                Tell us what you need and let us help you connect
+                with suitable candidates.
+              </p>
 
-                <Link
-                  to="/employers"
-                  className="btn-primary mt-7"
-                >
-                  Hire Talent →
-                </Link>
-              </div>
-            </div>
+              <Link
+                to="/employers"
+                className="btn-primary mt-7"
+              >
+                Hire Talent →
+              </Link>
 
-            {/* Candidate */}
-            <div className="relative overflow-hidden rounded-3xl border border-white/10 bg-slate-900 p-8 sm:p-10">
+            </motion.div>
 
-              <div className="relative">
-                <span className="text-xs font-bold uppercase tracking-[0.18em] text-blue-400">
-                  For Candidates
-                </span>
+            <motion.div
+              data-aos="fade-left"
+              whileHover={{ scale: 1.02 }}
+              className="premium-card rounded-3xl p-8 md:p-10"
+            >
 
-                <h3 className="mt-5 max-w-md text-2xl font-bold text-white sm:text-3xl">
-                  Ready for your next opportunity?
-                </h3>
+              <span className="text-sm font-semibold uppercase tracking-[0.2em] text-blue-400">
+                For Candidates
+              </span>
 
-                <p className="mt-4 max-w-lg leading-7 text-slate-400">
-                  Explore opportunities across IT, Non-IT, Banking and
-                  fresher roles.
-                </p>
+              <h3 className="mt-5 text-3xl font-bold">
+                Find the opportunity that moves you forward.
+              </h3>
 
-                <Link
-                  to="/jobs"
-                  className="btn-secondary mt-7"
-                >
-                  Explore Jobs →
-                </Link>
-              </div>
-            </div>
+              <p className="mt-4 leading-7 text-slate-400">
+                Explore opportunities across IT, Non-IT, Banking,
+                Fresher and Experienced roles.
+              </p>
+
+              <Link
+                to="/jobs"
+                className="btn-secondary mt-7"
+              >
+                Explore Jobs →
+              </Link>
+
+            </motion.div>
 
           </div>
 
         </div>
       </section>
 
-      {/* ========================================
-    FINAL CTA
-======================================== */}
+      {/* =========================================================
+          FINAL CTA
+      ========================================================= */}
 
-<section className="dark-section">
-  <div className="page-container py-20 lg:py-28">
+      <section className="relative overflow-hidden py-28">
 
-    <div className="relative overflow-hidden rounded-3xl border border-blue-500/20 bg-gradient-to-br from-blue-600/15 via-blue-600/5 to-transparent p-8 sm:p-10 lg:p-14">
+        <motion.div
+          className="absolute left-1/2 top-1/2 h-[500px] w-[500px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-blue-600/10 blur-[120px]"
+          animate={{
+            scale: [1, 1.25, 1],
+          }}
+          transition={{
+            duration: 6,
+            repeat: Infinity,
+            ease: "easeInOut",
+          }}
+        />
 
-      {/* Blue glow */}
-      <div className="blue-orb -right-32 -top-32 opacity-30" />
-      <div className="blue-orb -bottom-40 -left-32 opacity-20" />
-
-      <div className="relative grid items-center gap-10 lg:grid-cols-[1fr_auto]">
-
-        <div>
+        <div
+          data-aos="zoom-in"
+          className="page-container relative z-10 text-center"
+        >
 
           <span className="section-label">
             Let's Build What's Next
           </span>
 
-          <h2 className="mt-6 max-w-3xl text-3xl font-bold leading-tight text-white sm:text-4xl lg:text-5xl">
+          <h2 className="mx-auto mt-6 max-w-4xl text-4xl font-bold tracking-tight sm:text-5xl lg:text-6xl">
             The right connection can change a{" "}
             <span className="gradient-text">
-              career or a business.
+              career
+            </span>{" "}
+            or a{" "}
+            <span className="gradient-text">
+              business.
             </span>
           </h2>
 
-          <p className="mt-5 max-w-2xl text-base leading-8 text-slate-400 sm:text-lg">
-            Whether you're hiring talent or looking for your next opportunity,
-            Career Solutions is here to help you move forward.
+          <p className="mx-auto mt-7 max-w-2xl text-lg leading-8 text-slate-400">
+            Whether you are hiring, looking for your next opportunity,
+            or interested in partnering with us, let's start the
+            conversation.
           </p>
 
-        </div>
+          <div className="mt-10 flex flex-wrap justify-center gap-4">
 
-        <div className="flex flex-col gap-3 sm:flex-row lg:flex-col">
+            <Link
+              to="/contact"
+              className="btn-primary group"
+            >
+              Get In Touch
+              <span className="transition-transform duration-300 group-hover:translate-x-1">
+                →
+              </span>
+            </Link>
 
-          <Link
-            to="/contact"
-            className="btn-primary group whitespace-nowrap"
-          >
-            Get In Touch
-            <span className="transition-transform duration-300 group-hover:translate-x-1">
-              →
-            </span>
-          </Link>
+            <Link
+              to="/jobs"
+              className="btn-secondary"
+            >
+              Browse Jobs
+            </Link>
 
-          <Link
-            to="/jobs"
-            className="btn-secondary group whitespace-nowrap"
-          >
-            Browse Jobs
-            <span className="transition-transform duration-300 group-hover:translate-x-1">
-              →
-            </span>
-          </Link>
+          </div>
 
         </div>
-
-      </div>
-
-    </div>
-
-  </div>
-</section>
+      </section>
 
     </div>
   );

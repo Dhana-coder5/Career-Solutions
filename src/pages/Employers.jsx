@@ -1,6 +1,21 @@
 import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
+import { useEffect } from "react";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 function Employers() {
+  useEffect(() => {
+    AOS.init({
+      duration: 900,
+      once: true,
+      offset: 80,
+      easing: "ease-out-cubic",
+    });
+
+    AOS.refresh();
+  }, []);
+
   const services = [
     {
       number: "01",
@@ -70,55 +85,238 @@ function Employers() {
     },
   ];
 
+  const hiringSteps = [
+    {
+      number: "01",
+      title: "Share Requirements",
+      text: "Tell us about the role, skills and workforce requirement.",
+    },
+    {
+      number: "02",
+      title: "Candidate Sourcing",
+      text: "We identify profiles aligned with your requirements.",
+    },
+    {
+      number: "03",
+      title: "Screen & Coordinate",
+      text: "Relevant candidates are shortlisted and coordinated.",
+    },
+    {
+      number: "04",
+      title: "Move Forward",
+      text: "Take the next step with candidates who fit your needs.",
+    },
+  ];
+
+  const fadeUp = {
+    hidden: {
+      opacity: 0,
+      y: 40,
+    },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.7,
+        ease: "easeOut",
+      },
+    },
+  };
+
+  const stagger = {
+    hidden: {},
+    visible: {
+      transition: {
+        staggerChildren: 0.1,
+      },
+    },
+  };
+
   return (
     <div className="dark-page">
-      {/* Hero */}
+      {/* ================= HERO ================= */}
       <section className="relative overflow-hidden border-b border-white/10">
-        <div className="blue-orb -left-40 top-10" />
-        <div className="blue-orb -right-32 top-24 opacity-60" />
+        <motion.div
+          className="blue-orb -left-40 top-10"
+          animate={{
+            scale: [1, 1.15, 1],
+            opacity: [0.25, 0.45, 0.25],
+          }}
+          transition={{
+            duration: 7,
+            repeat: Infinity,
+            ease: "easeInOut",
+          }}
+        />
+
+        <motion.div
+          className="blue-orb -right-32 top-24 opacity-60"
+          animate={{
+            y: [0, -25, 0],
+            scale: [1, 1.1, 1],
+          }}
+          transition={{
+            duration: 8,
+            repeat: Infinity,
+            ease: "easeInOut",
+          }}
+        />
+
+        {/* Stars */}
+        <motion.span
+          className="star star-small absolute left-[9%] top-[25%]"
+          animate={{
+            opacity: [0.2, 1, 0.2],
+            scale: [0.7, 1.4, 0.7],
+          }}
+          transition={{
+            duration: 3,
+            repeat: Infinity,
+          }}
+        />
+
+        <motion.span
+          className="star absolute right-[18%] top-[20%]"
+          animate={{
+            opacity: [0.3, 1, 0.3],
+            scale: [0.8, 1.3, 0.8],
+          }}
+          transition={{
+            duration: 4,
+            repeat: Infinity,
+            delay: 1,
+          }}
+        />
+
+        <motion.span
+          className="star star-large absolute right-[8%] bottom-[18%]"
+          animate={{
+            opacity: [0.2, 1, 0.2],
+            rotate: [0, 180, 360],
+          }}
+          transition={{
+            duration: 6,
+            repeat: Infinity,
+          }}
+        />
 
         <div className="page-container relative py-24 md:py-32">
-          <div className="max-w-4xl animate-fade-up">
-            <span className="section-label">For Employers</span>
+          <motion.div
+            variants={stagger}
+            initial="hidden"
+            animate="visible"
+            className="max-w-4xl"
+          >
+            <motion.div variants={fadeUp}>
+              <span className="section-label">
+                For Employers
+              </span>
+            </motion.div>
 
-            <h1 className="mt-6 text-4xl font-bold leading-tight tracking-tight text-white sm:text-5xl md:text-6xl">
+            <motion.h1
+              variants={fadeUp}
+              className="mt-6 text-4xl font-bold leading-tight tracking-tight text-white sm:text-5xl md:text-6xl"
+            >
               Build your team with
-              <span className="gradient-text"> the right talent.</span>
-            </h1>
+              <span className="gradient-text">
+                {" "}the right talent.
+              </span>
+            </motion.h1>
 
-            <p className="mt-6 max-w-2xl text-base leading-8 text-slate-400 md:text-lg">
+            <motion.p
+              variants={fadeUp}
+              className="mt-6 max-w-2xl text-base leading-8 text-slate-400 md:text-lg"
+            >
               From individual hiring needs to larger workforce requirements,
               we provide recruitment and staffing support designed around your
               business.
-            </p>
+            </motion.p>
 
-            <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-              <Link to="/contact" className="btn-primary">
-                Start Hiring
-                <span>→</span>
-              </Link>
+            <motion.div
+              variants={fadeUp}
+              className="mt-8 flex flex-col gap-3 sm:flex-row"
+            >
+              <motion.div
+                whileHover={{
+                  scale: 1.05,
+                  y: -3,
+                }}
+                whileTap={{
+                  scale: 0.97,
+                }}
+              >
+                <Link to="/contact" className="btn-primary">
+                  Start Hiring
+                  <span>→</span>
+                </Link>
+              </motion.div>
 
-              <Link to="/services" className="btn-secondary">
-                Explore Services
-              </Link>
-            </div>
-          </div>
+              <motion.div
+                whileHover={{
+                  scale: 1.05,
+                  y: -3,
+                }}
+                whileTap={{
+                  scale: 0.97,
+                }}
+              >
+                <Link to="/services" className="btn-secondary">
+                  Explore Services
+                </Link>
+              </motion.div>
+            </motion.div>
+          </motion.div>
         </div>
       </section>
 
-      {/* Introduction */}
+      {/* ================= INTRODUCTION ================= */}
       <section className="dark-section">
         <div className="page-container py-20 md:py-28">
           <div className="grid gap-12 lg:grid-cols-[0.8fr_1.2fr] lg:items-center">
-            <div>
-              <span className="section-label">Our Approach</span>
+            <motion.div
+              initial={{
+                opacity: 0,
+                x: -60,
+              }}
+              whileInView={{
+                opacity: 1,
+                x: 0,
+              }}
+              viewport={{
+                once: true,
+                amount: 0.3,
+              }}
+              transition={{
+                duration: 0.8,
+              }}
+            >
+              <span className="section-label">
+                Our Approach
+              </span>
 
               <h2 className="mt-5 text-3xl font-bold tracking-tight text-white md:text-4xl">
                 Recruitment that starts with understanding your needs.
               </h2>
-            </div>
+            </motion.div>
 
-            <div>
+            <motion.div
+              initial={{
+                opacity: 0,
+                x: 60,
+              }}
+              whileInView={{
+                opacity: 1,
+                x: 0,
+              }}
+              viewport={{
+                once: true,
+                amount: 0.3,
+              }}
+              transition={{
+                duration: 0.8,
+                delay: 0.15,
+              }}
+            >
               <p className="text-base leading-8 text-slate-400">
                 Every organization has different hiring priorities. We focus on
                 understanding the role, required skills, experience level and
@@ -129,16 +327,35 @@ function Employers() {
                 Our solutions cover IT, Non-IT and Banking requirements, along
                 with fresher, experienced, staffing and bulk hiring needs.
               </p>
-            </div>
+            </motion.div>
           </div>
         </div>
       </section>
 
-      {/* Services */}
+      {/* ================= SERVICES ================= */}
       <section className="dark-section-alt border-y border-white/5">
         <div className="page-container py-20 md:py-28">
-          <div className="mx-auto max-w-2xl text-center">
-            <span className="section-label">Employer Solutions</span>
+          <motion.div
+            initial={{
+              opacity: 0,
+              y: 30,
+            }}
+            whileInView={{
+              opacity: 1,
+              y: 0,
+            }}
+            viewport={{
+              once: true,
+              amount: 0.3,
+            }}
+            transition={{
+              duration: 0.7,
+            }}
+            className="mx-auto max-w-2xl text-center"
+          >
+            <span className="section-label">
+              Employer Solutions
+            </span>
 
             <h2 className="mt-5 text-3xl font-bold tracking-tight text-white md:text-4xl">
               Solutions for different hiring needs
@@ -148,99 +365,212 @@ function Employers() {
               Choose the recruitment support that fits your organization and
               current workforce requirements.
             </p>
-          </div>
+          </motion.div>
 
-          <div className="mt-14 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
-            {services.map((service, index) => (
-              <article
+          <motion.div
+            variants={stagger}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{
+              once: true,
+              amount: 0.1,
+            }}
+            className="mt-14 grid gap-5 md:grid-cols-2 lg:grid-cols-3"
+          >
+            {services.map((service) => (
+              <motion.article
                 key={service.number}
-                className={`premium-card group p-7 animate-fade-up delay-${
-                  ((index % 5) + 1) * 100
-                }`}
+                variants={fadeUp}
+                whileHover={{
+                  y: -10,
+                  scale: 1.02,
+                }}
+                transition={{
+                  type: "spring",
+                  stiffness: 220,
+                  damping: 18,
+                }}
+                className="premium-card group relative overflow-hidden p-7"
               >
+                {/* Hover glow */}
+                <div className="absolute -right-16 -top-16 h-36 w-36 rounded-full bg-blue-500/0 blur-3xl transition-all duration-500 group-hover:bg-blue-500/20" />
+
                 <div className="relative">
                   <div className="flex items-center justify-between">
-                    <span className="text-sm font-bold tracking-widest text-blue-500">
+                    <motion.span
+                      className="text-sm font-bold tracking-widest text-blue-500"
+                      whileHover={{
+                        x: 5,
+                        scale: 1.1,
+                      }}
+                    >
                       {service.number}
-                    </span>
+                    </motion.span>
 
-                    <span className="flex h-10 w-10 items-center justify-center rounded-xl border border-blue-500/20 bg-blue-500/10 text-blue-400 transition-all duration-300 group-hover:scale-110 group-hover:bg-blue-500/20">
+                    <motion.span
+                      className="flex h-10 w-10 items-center justify-center rounded-xl border border-blue-500/20 bg-blue-500/10 text-blue-400"
+                      whileHover={{
+                        scale: 1.15,
+                        rotate: 90,
+                      }}
+                      transition={{
+                        type: "spring",
+                        stiffness: 300,
+                      }}
+                    >
                       +
-                    </span>
+                    </motion.span>
                   </div>
 
-                  <h3 className="mt-7 text-xl font-semibold text-white transition-colors duration-300 group-hover:text-blue-400">
+                  <motion.h3
+                    className="mt-7 text-xl font-semibold text-white transition-colors duration-300 group-hover:text-blue-400"
+                    whileHover={{
+                      x: 4,
+                    }}
+                  >
                     {service.title}
-                  </h3>
+                  </motion.h3>
 
                   <p className="mt-4 text-sm leading-7 text-slate-400">
                     {service.description}
                   </p>
+
+                  {/* Animated line */}
+                  <motion.div
+                    className="absolute bottom-0 left-0 h-[2px] bg-blue-500"
+                    initial={{
+                      width: 0,
+                    }}
+                    whileHover={{
+                      width: "100%",
+                    }}
+                    transition={{
+                      duration: 0.4,
+                    }}
+                  />
                 </div>
-              </article>
+              </motion.article>
             ))}
-          </div>
+          </motion.div>
         </div>
       </section>
 
-      {/* Hiring Process */}
+      {/* ================= HIRING PROCESS ================= */}
       <section className="dark-section">
         <div className="page-container py-20 md:py-28">
-          <div className="mx-auto max-w-2xl text-center">
-            <span className="section-label">Simple Process</span>
+          <motion.div
+            initial={{
+              opacity: 0,
+              y: 30,
+            }}
+            whileInView={{
+              opacity: 1,
+              y: 0,
+            }}
+            viewport={{
+              once: true,
+              amount: 0.3,
+            }}
+            transition={{
+              duration: 0.7,
+            }}
+            className="mx-auto max-w-2xl text-center"
+          >
+            <span className="section-label">
+              Simple Process
+            </span>
 
             <h2 className="mt-5 text-3xl font-bold tracking-tight text-white md:text-4xl">
               A straightforward path to hiring
             </h2>
-          </div>
+          </motion.div>
 
-          <div className="mt-14 grid gap-5 md:grid-cols-4">
-            {[
-              {
-                number: "01",
-                title: "Share Requirements",
-                text: "Tell us about the role, skills and workforce requirement.",
-              },
-              {
-                number: "02",
-                title: "Candidate Sourcing",
-                text: "We identify profiles aligned with your requirements.",
-              },
-              {
-                number: "03",
-                title: "Screen & Coordinate",
-                text: "Relevant candidates are shortlisted and coordinated.",
-              },
-              {
-                number: "04",
-                title: "Move Forward",
-                text: "Take the next step with candidates who fit your needs.",
-              },
-            ].map((step) => (
-              <div key={step.number} className="premium-card p-6">
-                <span className="text-sm font-bold text-blue-400">
+          <motion.div
+            variants={stagger}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{
+              once: true,
+              amount: 0.2,
+            }}
+            className="relative mt-14 grid gap-5 md:grid-cols-4"
+          >
+            {/* Connecting line */}
+            <motion.div
+              initial={{
+                scaleX: 0,
+              }}
+              whileInView={{
+                scaleX: 1,
+              }}
+              viewport={{
+                once: true,
+              }}
+              transition={{
+                duration: 1,
+                delay: 0.3,
+              }}
+              className="absolute left-[12%] right-[12%] top-8 hidden h-px origin-left bg-gradient-to-r from-transparent via-blue-500/40 to-transparent md:block"
+            />
+
+            {hiringSteps.map((step) => (
+              <motion.div
+                key={step.number}
+                variants={fadeUp}
+                whileHover={{
+                  y: -10,
+                  scale: 1.03,
+                }}
+                className="premium-card group relative z-10 p-6"
+              >
+                <motion.span
+                  className="flex h-10 w-10 items-center justify-center rounded-xl border border-blue-500/20 bg-blue-500/10 text-sm font-bold text-blue-400"
+                  whileHover={{
+                    scale: 1.15,
+                    rotate: 8,
+                  }}
+                >
                   {step.number}
-                </span>
+                </motion.span>
 
-                <h3 className="mt-4 font-semibold text-white">
+                <h3 className="mt-5 font-semibold text-white transition-colors duration-300 group-hover:text-blue-400">
                   {step.title}
                 </h3>
 
                 <p className="mt-3 text-sm leading-6 text-slate-400">
                   {step.text}
                 </p>
-              </div>
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
         </div>
       </section>
 
-      {/* Requirement Form */}
+      {/* ================= REQUIREMENT FORM ================= */}
       <section className="dark-section-alt border-y border-white/5">
         <div className="page-container py-20 md:py-28">
           <div className="grid gap-12 lg:grid-cols-[0.8fr_1.2fr]">
-            <div>
-              <span className="section-label">Tell Us What You Need</span>
+            {/* Left */}
+            <motion.div
+              initial={{
+                opacity: 0,
+                x: -60,
+              }}
+              whileInView={{
+                opacity: 1,
+                x: 0,
+              }}
+              viewport={{
+                once: true,
+                amount: 0.2,
+              }}
+              transition={{
+                duration: 0.8,
+              }}
+            >
+              <span className="section-label">
+                Tell Us What You Need
+              </span>
 
               <h2 className="mt-5 text-3xl font-bold tracking-tight text-white md:text-4xl">
                 Let's discuss your hiring requirement.
@@ -252,28 +582,72 @@ function Employers() {
                 how we can support you.
               </p>
 
-              <div className="mt-8 space-y-4">
-                <div className="premium-card p-5">
+              <motion.div
+                variants={stagger}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{
+                  once: true,
+                }}
+                className="mt-8 space-y-4"
+              >
+                <motion.div
+                  variants={fadeUp}
+                  whileHover={{
+                    x: 8,
+                  }}
+                  className="premium-card p-5"
+                >
                   <p className="text-sm font-semibold text-white">
                     IT • Non-IT • Banking
                   </p>
+
                   <p className="mt-2 text-sm text-slate-500">
                     Recruitment support across multiple sectors.
                   </p>
-                </div>
+                </motion.div>
 
-                <div className="premium-card p-5">
+                <motion.div
+                  variants={fadeUp}
+                  whileHover={{
+                    x: 8,
+                  }}
+                  className="premium-card p-5"
+                >
                   <p className="text-sm font-semibold text-white">
                     Fresher • Experienced • Bulk Hiring
                   </p>
+
                   <p className="mt-2 text-sm text-slate-500">
                     Flexible support for different hiring requirements.
                   </p>
-                </div>
-              </div>
-            </div>
+                </motion.div>
+              </motion.div>
+            </motion.div>
 
-            <form className="premium-card p-6 md:p-8">
+            {/* Form */}
+            <motion.form
+              initial={{
+                opacity: 0,
+                x: 60,
+              }}
+              whileInView={{
+                opacity: 1,
+                x: 0,
+              }}
+              viewport={{
+                once: true,
+                amount: 0.2,
+              }}
+              transition={{
+                duration: 0.8,
+                delay: 0.1,
+              }}
+              whileHover={{
+                y: -5,
+              }}
+              className="premium-card p-6 md:p-8"
+            >
               <div className="grid gap-5 md:grid-cols-2">
                 <div>
                   <label
@@ -356,24 +730,91 @@ function Employers() {
                 </div>
               </div>
 
-              <button type="button" className="btn-primary mt-6 w-full">
+              <motion.button
+                type="button"
+                className="btn-primary mt-6 w-full"
+                whileHover={{
+                  scale: 1.02,
+                  y: -2,
+                }}
+                whileTap={{
+                  scale: 0.98,
+                }}
+              >
                 Submit Requirement
                 <span>→</span>
-              </button>
-            </form>
+              </motion.button>
+            </motion.form>
           </div>
         </div>
       </section>
 
-      {/* Final CTA */}
+      {/* ================= FINAL CTA ================= */}
       <section className="relative overflow-hidden">
-        <div className="blue-orb left-1/2 top-0 -translate-x-1/2 opacity-50" />
+        <motion.div
+          className="blue-orb left-1/2 top-0 -translate-x-1/2 opacity-50"
+          animate={{
+            scale: [1, 1.2, 1],
+            opacity: [0.25, 0.5, 0.25],
+          }}
+          transition={{
+            duration: 6,
+            repeat: Infinity,
+            ease: "easeInOut",
+          }}
+        />
+
+        <motion.span
+          className="shine-particle absolute left-[15%] top-[25%]"
+          animate={{
+            scale: [0.5, 1.5, 0.5],
+            opacity: [0.2, 1, 0.2],
+          }}
+          transition={{
+            duration: 3,
+            repeat: Infinity,
+          }}
+        />
+
+        <motion.span
+          className="shine-particle absolute right-[15%] bottom-[25%]"
+          animate={{
+            scale: [0.5, 1.4, 0.5],
+            opacity: [0.2, 1, 0.2],
+          }}
+          transition={{
+            duration: 4,
+            repeat: Infinity,
+            delay: 1,
+          }}
+        />
 
         <div className="page-container relative py-20 md:py-28">
-          <div className="overflow-hidden rounded-3xl border border-blue-500/20 bg-gradient-to-br from-blue-700/25 via-blue-900/20 to-slate-950 p-8 md:p-12 lg:p-16">
+          <motion.div
+            initial={{
+              opacity: 0,
+              scale: 0.94,
+              y: 40,
+            }}
+            whileInView={{
+              opacity: 1,
+              scale: 1,
+              y: 0,
+            }}
+            viewport={{
+              once: true,
+              amount: 0.3,
+            }}
+            transition={{
+              duration: 0.8,
+            }}
+            className="overflow-hidden rounded-3xl border border-blue-500/20 bg-gradient-to-br from-blue-700/25 via-blue-900/20 to-slate-950 p-8 md:p-12 lg:p-16"
+          >
             <div className="grid gap-8 lg:grid-cols-[1fr_auto] lg:items-center">
               <div>
-                <span className="section-label">Ready to Hire?</span>
+                <span className="section-label">
+                  Ready to Hire?
+                </span>
 
                 <h2 className="mt-5 text-3xl font-bold tracking-tight text-white md:text-4xl">
                   Let's build your next team together.
@@ -385,15 +826,31 @@ function Employers() {
                 </p>
               </div>
 
-              <Link
-                to="/contact"
-                className="btn-primary whitespace-nowrap"
+              <motion.div
+                whileHover={{
+                  scale: 1.06,
+                  y: -4,
+                }}
+                whileTap={{
+                  scale: 0.97,
+                }}
               >
-                Contact Us
-                <span>→</span>
-              </Link>
+                <Link
+                  to="/contact"
+                  className="btn-primary whitespace-nowrap"
+                >
+                  Contact Us
+                  <motion.span
+                    whileHover={{
+                      x: 6,
+                    }}
+                  >
+                    →
+                  </motion.span>
+                </Link>
+              </motion.div>
             </div>
-          </div>
+          </motion.div>
         </div>
       </section>
     </div>
