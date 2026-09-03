@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 
 function Contact() {
@@ -24,24 +23,25 @@ function Contact() {
 
     setStatus("Sending...");
 
-    const scriptURL =
-      "https://script.google.com/macros/s/AKfycbz-uCOq3X2TQDF2hMauQ03op2wisxh4iJZbVYtldDsG4LShn3EysLrHZysb8KldOE3z/exec";
-
-    const data = new URLSearchParams();
-
-    data.append("name", formData.name);
-    data.append("email", formData.email);
-    data.append("phone", formData.phone);
-    data.append("enquiryType", formData.enquiryType);
-    data.append("message", formData.message);
-
     try {
+     
+
+      const scriptURL = "https://script.google.com/macros/s/AKfycbz-uCOq3X2TQDF2hMauQ03op2wisxh4iJZbVYtldDsG4LShn3EysLrHZysb8KldOE3z/exec";
+
+      const data = new URLSearchParams();
+
+      data.append("name", formData.name);
+      data.append("email", formData.email);
+      data.append("phone", formData.phone);
+      data.append("enquiryType", formData.enquiryType);
+      data.append("message", formData.message);
+
       await fetch(scriptURL, {
         method: "POST",
         body: data,
       });
 
-      setStatus("Enquiry submitted successfully!");
+      setStatus("Thank you! Your enquiry has been submitted.");
 
       setFormData({
         name: "",
@@ -57,198 +57,297 @@ function Contact() {
   };
 
   return (
-    <div>
+    <div className="dark-page">
+      {/* Hero */}
+      <section className="relative overflow-hidden border-b border-white/10">
+        <div className="blue-orb -left-40 top-10" />
+        <div className="blue-orb -right-32 top-20 opacity-60" />
 
-      <section className="bg-gradient-to-br from-blue-700 to-indigo-700 text-white">
-        <div className="max-w-7xl mx-auto px-6 py-20 md:py-28">
+        <div className="page-container relative py-24 md:py-32">
+          <div className="max-w-4xl animate-fade-up">
+            <span className="section-label">Get In Touch</span>
 
-          <p className="text-blue-200 font-semibold mb-4">
-            GET IN TOUCH
-          </p>
+            <h1 className="mt-6 text-4xl font-bold leading-tight tracking-tight text-white sm:text-5xl md:text-6xl">
+              Let's start a
+              <span className="gradient-text"> conversation.</span>
+            </h1>
 
-          <h1 className="text-4xl md:text-5xl font-bold mb-6">
-            Contact Us
-          </h1>
-
-          <p className="text-lg text-blue-100 max-w-3xl leading-8">
-            Whether you are an employer, candidate, college or recruitment
-            partner, we would be happy to hear from you.
-          </p>
-
+            <p className="mt-6 max-w-2xl text-base leading-8 text-slate-400 md:text-lg">
+              Whether you're looking for talent, exploring career
+              opportunities or interested in a partnership, we'd love to hear
+              from you.
+            </p>
+          </div>
         </div>
       </section>
 
-      <section className="py-20 bg-white">
-        <div className="max-w-7xl mx-auto px-6">
-
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-
+      {/* Contact Content */}
+      <section className="dark-section">
+        <div className="page-container py-20 md:py-28">
+          <div className="grid gap-8 lg:grid-cols-[0.75fr_1.25fr]">
             {/* Contact Information */}
             <div>
+              <span className="section-label">Contact Information</span>
 
-              <p className="text-blue-600 font-semibold mb-3">
-                CONTACT INFORMATION
-              </p>
-
-              <h2 className="text-3xl font-bold mb-6">
-                Let's Start a Conversation
+              <h2 className="mt-5 text-3xl font-bold tracking-tight text-white md:text-4xl">
+                We're here to help.
               </h2>
 
-              <p className="text-gray-600 leading-8 mb-8">
-                Contact our team for recruitment requirements, job
-                opportunities, campus recruitment, staffing solutions or
-                vendor partnerships.
+              <p className="mt-5 text-base leading-8 text-slate-400">
+                Have a hiring requirement, job enquiry or partnership
+                opportunity? Send us a message and our team will get in touch.
               </p>
 
-              <div className="space-y-5">
+              <div className="mt-10 space-y-4">
+                {/* Location */}
+                <div className="premium-card p-6">
+                  <div className="flex gap-4">
+                    <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border border-blue-500/20 bg-blue-500/10 text-blue-400">
+                      ●
+                    </div>
 
-                <div className="p-5 border border-gray-200 rounded-xl">
-                  <h3 className="font-bold mb-2">Phone</h3>
-                  <p className="text-gray-600">
-                    +91 XXXXX XXXXX
-                  </p>
+                    <div>
+                      <p className="text-xs font-semibold uppercase tracking-wider text-slate-500">
+                        Location
+                      </p>
+
+                      <p className="mt-2 text-sm font-medium text-white">
+                        Chennai, Tamil Nadu
+                      </p>
+                    </div>
+                  </div>
                 </div>
 
-                <div className="p-5 border border-gray-200 rounded-xl">
-                  <h3 className="font-bold mb-2">WhatsApp</h3>
-                  <p className="text-gray-600">
-                    +91 XXXXX XXXXX
-                  </p>
+                {/* Email */}
+                <div className="premium-card p-6">
+                  <div className="flex gap-4">
+                    <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border border-blue-500/20 bg-blue-500/10 text-blue-400">
+                      @
+                    </div>
+
+                    <div>
+                      <p className="text-xs font-semibold uppercase tracking-wider text-slate-500">
+                        Email
+                      </p>
+
+                      <a
+                        href="mailto:info@careersolutions.com"
+                        className="mt-2 block text-sm font-medium text-white transition-colors hover:text-blue-400"
+                      >
+                        info@careersolutions.com
+                      </a>
+                    </div>
+                  </div>
                 </div>
 
-                <div className="p-5 border border-gray-200 rounded-xl">
-                  <h3 className="font-bold mb-2">Email</h3>
-                  <p className="text-gray-600">
-                    info@careersolutions.com
-                  </p>
-                </div>
+                {/* Phone */}
+                <div className="premium-card p-6">
+                  <div className="flex gap-4">
+                    <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border border-blue-500/20 bg-blue-500/10 text-blue-400">
+                      ☎
+                    </div>
 
-                <div className="p-5 border border-gray-200 rounded-xl">
-                  <h3 className="font-bold mb-2">Office Address</h3>
-                  <p className="text-gray-600">
-                    Chennai, Tamil Nadu, India
-                  </p>
-                </div>
+                    <div>
+                      <p className="text-xs font-semibold uppercase tracking-wider text-slate-500">
+                        Phone
+                      </p>
 
+                      <a
+                        href="tel:+919876425364"
+                        className="mt-2 block text-sm font-medium text-white transition-colors hover:text-blue-400"
+                      >
+                        +91 98764 25364
+                      </a>
+                    </div>
+                  </div>
+                </div>
               </div>
 
+              {/* Quick Enquiry */}
+              <div className="mt-6 rounded-2xl border border-blue-500/20 bg-blue-600/5 p-6">
+                <p className="text-sm font-semibold text-white">
+                  Looking for talent?
+                </p>
+
+                <p className="mt-2 text-sm leading-6 text-slate-400">
+                  Share your hiring requirement and let us understand how we
+                  can support your organization.
+                </p>
+              </div>
             </div>
 
-            {/* Enquiry Form */}
-            <div>
+            {/* Form */}
+            <div className="premium-card p-6 md:p-8 lg:p-10">
+              <div>
+                <span className="section-label">Send An Enquiry</span>
 
-              <h2 className="text-3xl font-bold mb-6">
-                Send an Enquiry
-              </h2>
+                <h2 className="mt-5 text-2xl font-bold text-white md:text-3xl">
+                  Tell us how we can help.
+                </h2>
 
-              <form
-                onSubmit={handleSubmit}
-                className="bg-gray-50 p-8 rounded-2xl border border-gray-200 space-y-5"
-              >
+                <p className="mt-3 text-sm leading-7 text-slate-400">
+                  Fill in the details below and we'll get back to you.
+                </p>
+              </div>
 
-                <input
-                  type="text"
-                  name="name"
-                  value={formData.name}
-                  onChange={handleChange}
-                  placeholder="Your Name"
-                  required
-                  className="w-full border border-gray-300 rounded-lg px-4 py-3 bg-white"
-                />
+              <form onSubmit={handleSubmit} className="mt-8 space-y-5">
+                <div className="grid gap-5 md:grid-cols-2">
+                  {/* Name */}
+                  <div>
+                    <label
+                      htmlFor="name"
+                      className="text-sm font-medium text-slate-300"
+                    >
+                      Name
+                    </label>
 
-                <input
-                  type="email"
-                  name="email"
-                  value={formData.email}
-                  onChange={handleChange}
-                  placeholder="Email Address"
-                  required
-                  className="w-full border border-gray-300 rounded-lg px-4 py-3 bg-white"
-                />
+                    <input
+                      id="name"
+                      name="name"
+                      type="text"
+                      value={formData.name}
+                      onChange={handleChange}
+                      placeholder="Your name"
+                      required
+                      className="mt-2 w-full rounded-xl border border-white/10 bg-slate-950/70 px-4 py-3.5 text-sm text-white outline-none transition placeholder:text-slate-600 focus:border-blue-500/60 focus:ring-2 focus:ring-blue-500/10"
+                    />
+                  </div>
 
-                <input
-                  type="tel"
-                  name="phone"
-                  value={formData.phone}
-                  onChange={handleChange}
-                  placeholder="Phone Number"
-                  required
-                  className="w-full border border-gray-300 rounded-lg px-4 py-3 bg-white"
-                />
+                  {/* Email */}
+                  <div>
+                    <label
+                      htmlFor="email"
+                      className="text-sm font-medium text-slate-300"
+                    >
+                      Email
+                    </label>
 
-                <select
-                  name="enquiryType"
-                  value={formData.enquiryType}
-                  onChange={handleChange}
-                  required
-                  className="w-full border border-gray-300 rounded-lg px-4 py-3 bg-white"
-                >
-                  <option value="" disabled>
-                    Select Enquiry Type
-                  </option>
+                    <input
+                      id="email"
+                      name="email"
+                      type="email"
+                      value={formData.email}
+                      onChange={handleChange}
+                      placeholder="you@example.com"
+                      required
+                      className="mt-2 w-full rounded-xl border border-white/10 bg-slate-950/70 px-4 py-3.5 text-sm text-white outline-none transition placeholder:text-slate-600 focus:border-blue-500/60 focus:ring-2 focus:ring-blue-500/10"
+                    />
+                  </div>
 
-                  <option value="employer">
-                    Employer Enquiry
-                  </option>
+                  {/* Phone */}
+                  <div>
+                    <label
+                      htmlFor="phone"
+                      className="text-sm font-medium text-slate-300"
+                    >
+                      Phone
+                    </label>
 
-                  <option value="candidate">
-                    Candidate Enquiry
-                  </option>
+                    <input
+                      id="phone"
+                      name="phone"
+                      type="tel"
+                      value={formData.phone}
+                      onChange={handleChange}
+                      placeholder="Your phone number"
+                      required
+                      className="mt-2 w-full rounded-xl border border-white/10 bg-slate-950/70 px-4 py-3.5 text-sm text-white outline-none transition placeholder:text-slate-600 focus:border-blue-500/60 focus:ring-2 focus:ring-blue-500/10"
+                    />
+                  </div>
 
-                  <option value="vendor">
-                    Vendor Enquiry
-                  </option>
+                  {/* Enquiry Type */}
+                  <div>
+                    <label
+                      htmlFor="enquiryType"
+                      className="text-sm font-medium text-slate-300"
+                    >
+                      Enquiry Type
+                    </label>
 
-                  <option value="campus">
-                    Campus / College Enquiry
-                  </option>
-                </select>
+                    <select
+                      id="enquiryType"
+                      name="enquiryType"
+                      value={formData.enquiryType}
+                      onChange={handleChange}
+                      required
+                      className="mt-2 w-full rounded-xl border border-white/10 bg-slate-950/70 px-4 py-3.5 text-sm text-white outline-none transition focus:border-blue-500/60 focus:ring-2 focus:ring-blue-500/10"
+                    >
+                      <option value="" disabled>
+                        Select enquiry type
+                      </option>
 
-                <textarea
-                  name="message"
-                  value={formData.message}
-                  onChange={handleChange}
-                  rows="6"
-                  placeholder="Your Message"
-                  required
-                  className="w-full border border-gray-300 rounded-lg px-4 py-3 bg-white"
-                ></textarea>
+                      <option value="Job Seeker">Job Seeker</option>
+                      <option value="Employer">Employer</option>
+                      <option value="Campus Drive">Campus Drive</option>
+                      <option value="Vendor Partnership">
+                        Vendor Partnership
+                      </option>
+                      <option value="General Enquiry">
+                        General Enquiry
+                      </option>
+                    </select>
+                  </div>
+                </div>
+
+                {/* Message */}
+                <div>
+                  <label
+                    htmlFor="message"
+                    className="text-sm font-medium text-slate-300"
+                  >
+                    Message
+                  </label>
+
+                  <textarea
+                    id="message"
+                    name="message"
+                    rows="6"
+                    value={formData.message}
+                    onChange={handleChange}
+                    placeholder="Tell us about your requirement..."
+                    required
+                    className="mt-2 w-full resize-none rounded-xl border border-white/10 bg-slate-950/70 px-4 py-3.5 text-sm text-white outline-none transition placeholder:text-slate-600 focus:border-blue-500/60 focus:ring-2 focus:ring-blue-500/10"
+                  />
+                </div>
+
+                {/* Status */}
+                {status && (
+                  <div className="rounded-xl border border-blue-500/20 bg-blue-500/10 px-4 py-3 text-sm text-blue-300">
+                    {status}
+                  </div>
+                )}
 
                 <button
                   type="submit"
-                  className="w-full bg-blue-600 text-white py-3 rounded-lg font-semibold hover:bg-blue-700"
+                  className="btn-primary w-full"
                 >
                   Send Enquiry
+                  <span>→</span>
                 </button>
-
-                {status && (
-                  <p className="text-center font-medium text-gray-700">
-                    {status}
-                  </p>
-                )}
-
               </form>
-
             </div>
-
           </div>
-
         </div>
       </section>
 
-      {/* Map placeholder */}
-      <section className="py-16 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-6">
+      {/* Bottom CTA */}
+      <section className="relative overflow-hidden border-t border-white/5">
+        <div className="blue-orb left-1/2 top-0 -translate-x-1/2 opacity-50" />
 
-          <div className="bg-gray-200 h-72 rounded-2xl flex items-center justify-center">
-            <p className="text-gray-600 font-medium">
-              Google Map will be added here
+        <div className="page-container relative py-20 md:py-28">
+          <div className="overflow-hidden rounded-3xl border border-blue-500/20 bg-gradient-to-br from-blue-700/25 via-blue-900/20 to-slate-950 p-8 text-center md:p-12 lg:p-16">
+            <span className="section-label">Career Solutions</span>
+
+            <h2 className="mx-auto mt-5 max-w-3xl text-3xl font-bold tracking-tight text-white md:text-5xl">
+              Let's connect the right people with the right opportunities.
+            </h2>
+
+            <p className="mx-auto mt-5 max-w-2xl text-base leading-8 text-slate-300">
+              Hire talent. Build careers. Grow together.
             </p>
           </div>
-
         </div>
       </section>
-
     </div>
   );
 }

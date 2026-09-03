@@ -1,1 +1,328 @@
 @import "tailwindcss";
+
+@theme {
+  --color-brand-950: #020617;
+  --color-brand-900: #06102a;
+  --color-brand-800: #0b1b46;
+  --color-brand-700: #123b91;
+  --color-brand-600: #1d4ed8;
+  --color-brand-500: #2563eb;
+  --color-brand-400: #3b82f6;
+  --color-brand-300: #60a5fa;
+
+  --color-surface-950: #030712;
+  --color-surface-900: #0b1120;
+  --color-surface-800: #111827;
+  --color-surface-700: #1e293b;
+
+  --color-text-primary: #f8fafc;
+  --color-text-secondary: #94a3b8;
+}
+
+/* =========================
+   Base
+========================= */
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  background: #020617;
+  color: #f8fafc;
+  font-family:
+    Inter,
+    ui-sans-serif,
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+::selection {
+  background: #2563eb;
+  color: #ffffff;
+}
+
+/* =========================
+   Premium Background
+========================= */
+
+.dark-page {
+  background:
+    radial-gradient(
+      circle at 15% 10%,
+      rgba(37, 99, 235, 0.16),
+      transparent 28%
+    ),
+    radial-gradient(
+      circle at 85% 20%,
+      rgba(29, 78, 216, 0.12),
+      transparent 30%
+    ),
+    #020617;
+}
+
+.dark-section {
+  background: #020617;
+}
+
+.dark-section-alt {
+  background: #07101f;
+}
+
+/* =========================
+   Container
+========================= */
+
+.page-container {
+  width: min(100% - 2rem, 1280px);
+  margin-inline: auto;
+}
+
+@media (min-width: 768px) {
+  .page-container {
+    width: min(100% - 4rem, 1280px);
+  }
+}
+
+/* =========================
+   Premium Cards
+========================= */
+
+.premium-card {
+  position: relative;
+  overflow: hidden;
+  background: rgba(15, 23, 42, 0.72);
+  border: 1px solid rgba(96, 165, 250, 0.12);
+  border-radius: 1.25rem;
+  backdrop-filter: blur(14px);
+  transition:
+    transform 0.35s ease,
+    border-color 0.35s ease,
+    box-shadow 0.35s ease,
+    background 0.35s ease;
+}
+
+.premium-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(37, 99, 235, 0.08),
+    transparent 45%
+  );
+  pointer-events: none;
+}
+
+.premium-card:hover {
+  transform: translateY(-6px);
+  border-color: rgba(59, 130, 246, 0.4);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.35);
+}
+
+/* =========================
+   Buttons
+========================= */
+
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.8rem 1.4rem;
+  border-radius: 0.75rem;
+  background: linear-gradient(
+    135deg,
+    #1d4ed8,
+    #2563eb
+  );
+  color: white;
+  font-weight: 600;
+  box-shadow: 0 8px 25px rgba(37, 99, 235, 0.25);
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease,
+    filter 0.3s ease;
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 35px rgba(37, 99, 235, 0.4);
+  filter: brightness(1.08);
+}
+
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.8rem 1.4rem;
+  border-radius: 0.75rem;
+  background: rgba(30, 41, 59, 0.7);
+  color: #f8fafc;
+  border: 1px solid rgba(148, 163, 184, 0.2);
+  font-weight: 600;
+  transition:
+    transform 0.3s ease,
+    background 0.3s ease,
+    border-color 0.3s ease;
+}
+
+.btn-secondary:hover {
+  transform: translateY(-2px);
+  background: rgba(37, 99, 235, 0.15);
+  border-color: rgba(96, 165, 250, 0.4);
+}
+
+/* =========================
+   Text
+========================= */
+
+.gradient-text {
+  background: linear-gradient(
+    90deg,
+    #60a5fa,
+    #3b82f6,
+    #2563eb
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.section-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #60a5fa;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.section-label::before {
+  content: "";
+  width: 28px;
+  height: 1px;
+  background: #3b82f6;
+}
+
+/* =========================
+   Glow
+========================= */
+
+.blue-glow {
+  box-shadow:
+    0 0 40px rgba(37, 99, 235, 0.12),
+    0 0 100px rgba(29, 78, 216, 0.06);
+}
+
+.blue-orb {
+  position: absolute;
+  width: 280px;
+  height: 280px;
+  border-radius: 999px;
+  background: rgba(37, 99, 235, 0.14);
+  filter: blur(80px);
+  pointer-events: none;
+}
+
+/* =========================
+   Animations
+========================= */
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.animate-fade-up {
+  animation: fadeUp 0.8s ease-out both;
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.8s ease-out both;
+}
+
+.animate-float {
+  animation: float 5s ease-in-out infinite;
+}
+
+/* Staggered entrance */
+
+.delay-100 {
+  animation-delay: 100ms;
+}
+
+.delay-200 {
+  animation-delay: 200ms;
+}
+
+.delay-300 {
+  animation-delay: 300ms;
+}
+
+.delay-400 {
+  animation-delay: 400ms;
+}
+
+.delay-500 {
+  animation-delay: 500ms;
+}
+
+/* =========================
+   Accessibility
+========================= */
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

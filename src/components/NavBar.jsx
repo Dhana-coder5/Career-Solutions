@@ -1,193 +1,145 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
+import logo from "../assets/logo.png";
 
 function NavBar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const location = useLocation();
+
+  const navLinks = [
+    { name: "Home", path: "/" },
+    { name: "About Us", path: "/about" },
+    { name: "Services", path: "/services" },
+    { name: "Industries", path: "/industries" },
+    { name: "Jobs", path: "/jobs" },
+    { name: "Employers", path: "/employers" },
+    { name: "Campus Drives", path: "/campus-drive" },
+    { name: "Vendor Partnership", path: "/vendor-partnership" },
+    { name: "Contact", path: "/contact" },
+  ];
+
+  const isActive = (path) => location.pathname === path;
 
   const closeMenu = () => {
     setIsMenuOpen(false);
   };
 
   return (
-    <nav className="sticky top-0 z-50 bg-white shadow-md">
-      <div className="max-w-7xl mx-auto px-4 md:px-6 py-4">
-
-        <div className="flex items-center justify-between">
-
+    <nav className="sticky top-0 z-50 border-b border-white/10 bg-brand-950/85 backdrop-blur-xl">
+      <div className="page-container">
+        <div className="flex h-20 items-center justify-between">
           {/* Logo */}
-          <Link
-            to="/"
-            onClick={closeMenu}
-            className="text-xl md:text-2xl font-bold text-blue-600 -ml-5"
-          >
-            Career Solutions
+          <Link to="/" onClick={closeMenu} className="group flex items-center">
+            <img
+              src="/logo.png"
+              alt="Career Solutions"
+              className="w-14 h-14 rounded-lg object-contain"
+            />
           </Link>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center gap-6">
+          <div className="hidden xl:flex items-center gap-1">
+            {navLinks.map((link) => (
+              <Link
+                key={link.path}
+                to={link.path}
+                className={`relative rounded-lg px-3 py-2 text-sm font-medium transition-all duration-300 ${
+                  isActive(link.path)
+                    ? "text-white"
+                    : "text-slate-400 hover:text-white"
+                }`}
+              >
+                {link.name}
 
-            <Link
-              to="/"
-              className="text-gray-700 hover:text-blue-600 transition"
-            >
-              Home
-            </Link>
-
-            <Link
-              to="/about"
-              className="text-gray-700 hover:text-blue-600 transition"
-            >
-              About Us
-            </Link>
-
-            <Link
-              to="/services"
-              className="text-gray-700 hover:text-blue-600 transition"
-            >
-              Services
-            </Link>
-
-            <Link
-              to="/industries"
-              className="text-gray-700 hover:text-blue-600 transition"
-            >
-              Industries
-            </Link>
-
-            <Link
-              to="/jobs"
-              className="text-gray-700 hover:text-blue-600 transition"
-            >
-              Jobs
-            </Link>
-
-            <Link
-              to="/employers"
-              className="text-gray-700 hover:text-blue-600 transition"
-            >
-              Employers
-            </Link>
-
-            <Link
-              to="/contact"
-              className="text-gray-700 hover:text-blue-600 transition"
-            >
-              Contact
-            </Link>
-
+                {isActive(link.path) && (
+                  <span className="absolute bottom-0 left-1/2 h-0.5 w-5 -translate-x-1/2 rounded-full bg-blue-500" />
+                )}
+              </Link>
+            ))}
           </div>
 
           {/* Desktop CTA */}
-          <Link
-            to="/jobs"
-            className="hidden md:block bg-blue-600 text-white px-5 py-2 rounded-lg hover:bg-blue-700 transition ml-6"
-          >
-            Find Jobs
-          </Link>
+          <div className="hidden xl:block">
+            <Link to="/jobs" className="btn-primary">
+              Find Jobs
+              <span className="transition-transform duration-300 group-hover:translate-x-1">
+                →
+              </span>
+            </Link>
+          </div>
 
-          {/* Mobile Menu Button */}
+          {/* Mobile Button */}
           <button
+            type="button"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className="md:hidden text-gray-700 text-2xl focus:outline-none"
-            aria-label="Toggle menu"
+            className="xl:hidden rounded-lg border border-white/10 bg-white/5 p-2.5 text-slate-300 transition hover:border-blue-500/40 hover:bg-blue-500/10 hover:text-white"
+            aria-label="Toggle navigation menu"
+            aria-expanded={isMenuOpen}
           >
-            {isMenuOpen ? "✕" : "☰"}
+            {isMenuOpen ? (
+              <svg
+                className="h-6 w-6"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                strokeWidth="2"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M6 18L18 6M6 6l12 12"
+                />
+              </svg>
+            ) : (
+              <svg
+                className="h-6 w-6"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                strokeWidth="2"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M4 6h16M4 12h16M4 18h16"
+                />
+              </svg>
+            )}
           </button>
-
         </div>
 
-        {/* Mobile Navigation */}
-        {isMenuOpen && (
-          <div className="md:hidden mt-4 border-t border-gray-200 pt-4">
-
-            <div className="flex flex-col gap-3">
-
+        {/* Mobile Menu */}
+        <div
+          className={`xl:hidden overflow-hidden transition-all duration-300 ${
+            isMenuOpen ? "max-h-[700px] opacity-100 pb-5" : "max-h-0 opacity-0"
+          }`}
+        >
+          <div className="rounded-2xl border border-white/10 bg-slate-900/80 p-3">
+            {navLinks.map((link) => (
               <Link
-                to="/"
+                key={link.path}
+                to={link.path}
                 onClick={closeMenu}
-                className="text-gray-700 hover:text-blue-600 py-2"
+                className={`block rounded-xl px-4 py-3 text-sm font-medium transition-all duration-300 ${
+                  isActive(link.path)
+                    ? "bg-blue-600/15 text-blue-400"
+                    : "text-slate-300 hover:bg-white/5 hover:text-white"
+                }`}
               >
-                Home
+                {link.name}
               </Link>
+            ))}
 
-              <Link
-                to="/about"
-                onClick={closeMenu}
-                className="text-gray-700 hover:text-blue-600 py-2"
-              >
-                About Us
-              </Link>
-
-              <Link
-                to="/services"
-                onClick={closeMenu}
-                className="text-gray-700 hover:text-blue-600 py-2"
-              >
-                Services
-              </Link>
-
-              <Link
-                to="/industries"
-                onClick={closeMenu}
-                className="text-gray-700 hover:text-blue-600 py-2"
-              >
-                Industries
-              </Link>
-
-              <Link
-                to="/campus-drive"
-                onClick={closeMenu}
-                className="text-gray-700 hover:text-blue-600 py-2"
-              >
-                Campus Drives
-              </Link>
-
-              <Link
-                to="/jobs"
-                onClick={closeMenu}
-                className="text-gray-700 hover:text-blue-600 py-2"
-              >
-                Jobs
-              </Link>
-
-              <Link
-                to="/employers"
-                onClick={closeMenu}
-                className="text-gray-700 hover:text-blue-600 py-2"
-              >
-                Employers
-              </Link>
-
-              <Link
-                to="/vendor-partnership"
-                onClick={closeMenu}
-                className="text-gray-700 hover:text-blue-600 py-2"
-              >
-                Vendor Partnership
-              </Link>
-
-              <Link
-                to="/contact"
-                onClick={closeMenu}
-                className="text-gray-700 hover:text-blue-600 py-2"
-              >
-                Contact
-              </Link>
-
-              {/* Mobile CTA */}
-              <Link
-                to="/jobs"
-                onClick={closeMenu}
-                className="bg-blue-600 text-white text-center px-5 py-2 rounded-lg hover:bg-blue-700 transition mt-2"
-              >
-                Find Jobs
-              </Link>
-
-            </div>
-
+            <Link
+              to="/jobs"
+              onClick={closeMenu}
+              className="btn-primary mt-3 w-full"
+            >
+              Find Jobs
+              <span>→</span>
+            </Link>
           </div>
-        )}
-
+        </div>
       </div>
     </nav>
   );

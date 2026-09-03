@@ -8,7 +8,7 @@ function App() {
   return (
     <BrowserRouter>
       <ScrollToTop />
-      <div className="min-h-screen bg-white text-gray-900 flex flex-col">
+     <div className="min-h-screen bg-brand-950 text-white flex flex-col">
         <NavBar />
 
         <main className="flex-1">

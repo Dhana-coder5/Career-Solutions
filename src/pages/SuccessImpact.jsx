@@ -1,365 +1,334 @@
+import { Link } from "react-router-dom";
 
-const SuccessImpact = () => {
-  // Keep numerical statistics hidden until verified company figures
-  // are available.
-  const showImpactStats = false;
+const impactAreas = [
+  {
+    number: "01",
+    title: "Candidates",
+    description:
+      "Helping job seekers discover relevant opportunities across different experience levels and career paths.",
+    points: [
+      "Fresher opportunities",
+      "Experienced roles",
+      "IT & Non-IT careers",
+      "Banking opportunities",
+    ],
+  },
+  {
+    number: "02",
+    title: "Employers",
+    description:
+      "Supporting organizations with structured recruitment solutions aligned with their workforce requirements.",
+    points: [
+      "Talent sourcing",
+      "Candidate screening",
+      "Bulk hiring support",
+      "Recruitment coordination",
+    ],
+  },
+  {
+    number: "03",
+    title: "Institutions",
+    description:
+      "Connecting educational institutions with employers through campus recruitment and career-focused activities.",
+    points: [
+      "Campus drives",
+      "Candidate coordination",
+      "Industry interaction",
+      "Campus-to-corporate support",
+    ],
+  },
+];
 
-  const impactStats = [
-    {
-      value: "0",
-      label: "Candidates Placed",
-    },
-    {
-      value: "0",
-      label: "Hiring Partners",
-    },
-    {
-      value: "0",
-      label: "Campus Drives Conducted",
-    },
-    {
-      value: "0",
-      label: "Open Positions",
-    },
-    {
-      value: "0",
-      label: "Industries Covered",
-    },
-  ];
+const sectors = [
+  "IT & Technology",
+  "Banking",
+  "Healthcare",
+  "Education",
+  "BPO",
+  "Retail",
+  "Logistics",
+  "Manufacturing",
+  "E-commerce",
+];
 
+function SuccessImpact() {
   return (
-    <div className="min-h-screen bg-white text-gray-900">
+    <div className="dark-page min-h-screen">
+      {/* Hero */}
+      <section className="relative overflow-hidden border-b border-white/5">
+        <div className="blue-orb -left-40 top-10" />
+        <div className="blue-orb -right-40 bottom-0" />
 
-      {/* Hero Section */}
-      <section className="bg-gray-900 text-white">
+        <div className="page-container relative py-24 md:py-32">
+          <div className="max-w-4xl animate-fade-up">
+            <span className="section-label">Success & Impact</span>
 
-        <div className="mx-auto max-w-7xl px-6 py-20 lg:px-8">
+            <h1 className="mt-6 text-4xl font-bold leading-tight text-white sm:text-5xl md:text-6xl">
+              Creating connections that
+              <span className="gradient-text"> move careers forward.</span>
+            </h1>
 
-          <p className="text-sm font-semibold uppercase tracking-widest text-blue-400">
-            Our Impact
-          </p>
-
-          <h1 className="mt-4 max-w-4xl text-4xl font-bold leading-tight sm:text-5xl lg:text-6xl">
-            Our Success
-            <br />
-            & Impact
-          </h1>
-
-          <p className="mt-6 max-w-3xl text-lg leading-8 text-gray-300">
-            We focus on creating meaningful connections between
-            employers, candidates, institutions and recruitment partners.
-          </p>
-
-          <div className="mt-8 flex flex-wrap gap-4">
-
-            <button className="rounded-lg bg-blue-600 px-6 py-3 font-semibold text-white transition hover:bg-blue-700">
-              Hire Talent
-            </button>
-
-            <button className="rounded-lg border border-white px-6 py-3 font-semibold text-white transition hover:bg-white hover:text-gray-900">
-              Find Jobs
-            </button>
-
-          </div>
-
-        </div>
-
-      </section>
-
-
-      {/* Impact Statistics */}
-      {showImpactStats && (
-        <section className="py-20">
-
-          <div className="mx-auto max-w-7xl px-6 lg:px-8">
-
-            <div className="mx-auto max-w-2xl text-center">
-
-              <p className="text-sm font-semibold uppercase tracking-widest text-blue-600">
-                Our Numbers
-              </p>
-
-              <h2 className="mt-3 text-3xl font-bold sm:text-4xl">
-                Our Recruitment Impact
-              </h2>
-
-              <p className="mt-4 leading-7 text-gray-600">
-                Our growing recruitment network continues to connect
-                talent with opportunities across multiple sectors.
-              </p>
-
-            </div>
-
-
-            <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-5">
-
-              {impactStats.map((stat) => (
-                <div
-                  key={stat.label}
-                  className="rounded-2xl border border-gray-200 bg-white p-7 text-center transition hover:-translate-y-1 hover:shadow-lg"
-                >
-
-                  <p className="text-4xl font-bold text-blue-600">
-                    {stat.value}
-                  </p>
-
-                  <p className="mt-3 font-semibold text-gray-700">
-                    {stat.label}
-                  </p>
-
-                </div>
-              ))}
-
-            </div>
-
-          </div>
-
-        </section>
-      )}
-
-
-      {/* Our Impact Areas */}
-      <section className="py-20">
-
-        <div className="mx-auto max-w-7xl px-6 lg:px-8">
-
-          <div className="mx-auto max-w-2xl text-center">
-
-            <p className="text-sm font-semibold uppercase tracking-widest text-blue-600">
-              Our Reach
+            <p className="mt-6 max-w-2xl text-base leading-8 text-slate-400 md:text-lg">
+              Our focus is simple — create meaningful connections between
+              candidates, employers, and institutions through structured
+              recruitment support.
             </p>
 
-            <h2 className="mt-3 text-3xl font-bold sm:text-4xl">
-              Creating Opportunities Through Recruitment
+            <div className="mt-8 flex flex-col gap-4 sm:flex-row">
+              <Link to="/jobs" className="btn-primary">
+                Find Opportunities →
+              </Link>
+
+              <Link to="/employers" className="btn-secondary">
+                Hire Talent
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Introduction */}
+      <section className="dark-section py-20 md:py-28">
+        <div className="page-container">
+          <div className="grid gap-12 lg:grid-cols-2 lg:items-center">
+            <div>
+              <span className="section-label">Our Approach</span>
+
+              <h2 className="mt-5 text-3xl font-bold text-white md:text-4xl">
+                Impact begins with the right connection.
+              </h2>
+
+              <p className="mt-6 leading-8 text-slate-400">
+                Recruitment is more than matching a resume with a job
+                description. It is about understanding requirements, people,
+                skills, and long-term career goals.
+              </p>
+
+              <p className="mt-4 leading-8 text-slate-400">
+                We aim to create a smoother journey for candidates and
+                employers while supporting institutions and recruitment
+                partners.
+              </p>
+            </div>
+
+            <div className="premium-card blue-glow p-8 md:p-10">
+              <div className="grid grid-cols-2 gap-4">
+                <div className="rounded-2xl border border-blue-400/10 bg-blue-500/5 p-5">
+                  <p className="text-sm text-slate-400">Focus</p>
+                  <p className="mt-2 text-xl font-bold text-white">
+                    People
+                  </p>
+                </div>
+
+                <div className="rounded-2xl border border-blue-400/10 bg-blue-500/5 p-5">
+                  <p className="text-sm text-slate-400">Focus</p>
+                  <p className="mt-2 text-xl font-bold text-white">
+                    Careers
+                  </p>
+                </div>
+
+                <div className="rounded-2xl border border-blue-400/10 bg-blue-500/5 p-5">
+                  <p className="text-sm text-slate-400">Focus</p>
+                  <p className="mt-2 text-xl font-bold text-white">
+                    Talent
+                  </p>
+                </div>
+
+                <div className="rounded-2xl border border-blue-400/10 bg-blue-500/5 p-5">
+                  <p className="text-sm text-slate-400">Focus</p>
+                  <p className="mt-2 text-xl font-bold text-white">
+                    Growth
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Impact Areas */}
+      <section className="dark-section-alt border-y border-white/5 py-20 md:py-28">
+        <div className="page-container">
+          <div className="mx-auto max-w-3xl text-center">
+            <span className="section-label justify-center">
+              Where We Create Value
+            </span>
+
+            <h2 className="mt-5 text-3xl font-bold text-white md:text-4xl">
+              Supporting every side of the recruitment ecosystem.
             </h2>
 
-            <p className="mt-4 leading-7 text-gray-600">
-              Our recruitment ecosystem brings together candidates,
-              employers and institutions to create better career
-              opportunities.
+            <p className="mt-5 leading-7 text-slate-400">
+              Our services are designed around the needs of candidates,
+              employers, and educational institutions.
             </p>
-
           </div>
 
+          <div className="mt-14 grid gap-6 lg:grid-cols-3">
+            {impactAreas.map((area, index) => (
+              <div
+                key={area.number}
+                className="premium-card group p-7 animate-fade-up md:p-8"
+                style={{ animationDelay: `${index * 120}ms` }}
+              >
+                <div className="flex items-center justify-between">
+                  <span className="text-sm font-bold tracking-widest text-blue-400">
+                    {area.number}
+                  </span>
 
-          <div className="mt-14 grid gap-6 md:grid-cols-3">
+                  <span className="text-2xl text-blue-400 transition-transform duration-300 group-hover:translate-x-2">
+                    →
+                  </span>
+                </div>
 
-            {/* Candidates */}
-            <div className="group rounded-2xl border border-gray-200 bg-white p-8 transition duration-300 hover:-translate-y-1 hover:border-blue-200 hover:shadow-xl">
+                <h3 className="mt-8 text-2xl font-bold text-white">
+                  {area.title}
+                </h3>
 
-              <div className="flex h-14 w-14 items-center justify-center rounded-xl bg-blue-100 text-xl font-bold text-blue-600 transition group-hover:bg-blue-600 group-hover:text-white">
-                C
+                <p className="mt-4 text-sm leading-7 text-slate-400">
+                  {area.description}
+                </p>
+
+                <div className="mt-7 space-y-3 border-t border-white/5 pt-6">
+                  {area.points.map((point) => (
+                    <div
+                      key={point}
+                      className="flex items-center gap-3 text-sm text-slate-300"
+                    >
+                      <span className="h-1.5 w-1.5 rounded-full bg-blue-400" />
+                      {point}
+                    </div>
+                  ))}
+                </div>
               </div>
-
-              <h3 className="mt-6 text-2xl font-bold">
-                Candidates
-              </h3>
-
-              <p className="mt-4 leading-7 text-gray-600">
-                Supporting freshers and experienced professionals in
-                discovering suitable career opportunities across
-                different sectors.
-              </p>
-
-              <div className="mt-6 space-y-3">
-
-                <p className="flex items-center gap-3 text-sm font-medium">
-                  <span className="text-blue-600">✓</span>
-                  Fresher Opportunities
-                </p>
-
-                <p className="flex items-center gap-3 text-sm font-medium">
-                  <span className="text-blue-600">✓</span>
-                  Experienced Hiring
-                </p>
-
-                <p className="flex items-center gap-3 text-sm font-medium">
-                  <span className="text-blue-600">✓</span>
-                  Career Support
-                </p>
-
-              </div>
-
-            </div>
-
-
-            {/* Employers */}
-            <div className="group rounded-2xl border border-gray-200 bg-white p-8 transition duration-300 hover:-translate-y-1 hover:border-blue-200 hover:shadow-xl">
-
-              <div className="flex h-14 w-14 items-center justify-center rounded-xl bg-blue-100 text-xl font-bold text-blue-600 transition group-hover:bg-blue-600 group-hover:text-white">
-                E
-              </div>
-
-              <h3 className="mt-6 text-2xl font-bold">
-                Employers
-              </h3>
-
-              <p className="mt-4 leading-7 text-gray-600">
-                Helping organizations find suitable professionals for
-                individual positions, bulk hiring and workforce needs.
-              </p>
-
-              <div className="mt-6 space-y-3">
-
-                <p className="flex items-center gap-3 text-sm font-medium">
-                  <span className="text-blue-600">✓</span>
-                  Talent Sourcing
-                </p>
-
-                <p className="flex items-center gap-3 text-sm font-medium">
-                  <span className="text-blue-600">✓</span>
-                  Bulk Hiring
-                </p>
-
-                <p className="flex items-center gap-3 text-sm font-medium">
-                  <span className="text-blue-600">✓</span>
-                  Staffing Solutions
-                </p>
-
-              </div>
-
-            </div>
-
-
-            {/* Institutions */}
-            <div className="group rounded-2xl border border-gray-200 bg-white p-8 transition duration-300 hover:-translate-y-1 hover:border-blue-200 hover:shadow-xl">
-
-              <div className="flex h-14 w-14 items-center justify-center rounded-xl bg-blue-100 text-xl font-bold text-blue-600 transition group-hover:bg-blue-600 group-hover:text-white">
-                I
-              </div>
-
-              <h3 className="mt-6 text-2xl font-bold">
-                Institutions
-              </h3>
-
-              <p className="mt-4 leading-7 text-gray-600">
-                Supporting colleges, universities and training
-                institutions through campus recruitment and placement
-                activities.
-              </p>
-
-              <div className="mt-6 space-y-3">
-
-                <p className="flex items-center gap-3 text-sm font-medium">
-                  <span className="text-blue-600">✓</span>
-                  Campus Drives
-                </p>
-
-                <p className="flex items-center gap-3 text-sm font-medium">
-                  <span className="text-blue-600">✓</span>
-                  Fresher Hiring
-                </p>
-
-                <p className="flex items-center gap-3 text-sm font-medium">
-                  <span className="text-blue-600">✓</span>
-                  Placement Assistance
-                </p>
-
-              </div>
-
-            </div>
-
+            ))}
           </div>
-
         </div>
-
       </section>
 
-
-      {/* Sectors Covered */}
-      <section className="bg-gray-50 py-20">
-
-        <div className="mx-auto max-w-7xl px-6 lg:px-8">
-
-          <div className="grid gap-12 lg:grid-cols-2 lg:items-center">
-
+      {/* Sector Coverage */}
+      <section className="dark-section py-20 md:py-28">
+        <div className="page-container">
+          <div className="grid gap-12 lg:grid-cols-[0.8fr_1.2fr] lg:items-center">
             <div>
+              <span className="section-label">Sector Coverage</span>
 
-              <p className="text-sm font-semibold uppercase tracking-widest text-blue-600">
-                Sector Coverage
-              </p>
-
-              <h2 className="mt-3 text-3xl font-bold sm:text-4xl">
-                Connecting Talent Across Industries
+              <h2 className="mt-5 text-3xl font-bold text-white md:text-4xl">
+                Recruitment across diverse industries.
               </h2>
 
-              <p className="mt-5 leading-7 text-gray-600">
-                Our recruitment services support organizations and
-                candidates across IT, Non-IT and Banking & Financial
-                Services sectors.
+              <p className="mt-5 leading-7 text-slate-400">
+                Our recruitment expertise spans multiple sectors, allowing us
+                to understand different workforce requirements and candidate
+                profiles.
               </p>
-
             </div>
-
 
             <div className="grid grid-cols-2 gap-4 sm:grid-cols-3">
-
-              {[
-                "IT & Technology",
-                "Banking",
-                "Healthcare",
-                "Education",
-                "BPO",
-                "Retail",
-                "Logistics",
-                "Manufacturing",
-                "E-commerce",
-              ].map((industry) => (
+              {sectors.map((sector, index) => (
                 <div
-                  key={industry}
-                  className="rounded-xl border border-gray-200 bg-white p-5 text-center font-semibold transition hover:border-blue-300 hover:shadow-md"
+                  key={sector}
+                  className="premium-card flex min-h-24 items-center justify-center p-5 text-center animate-fade-up"
+                  style={{ animationDelay: `${index * 70}ms` }}
                 >
-                  {industry}
+                  <span className="text-sm font-semibold text-slate-200">
+                    {sector}
+                  </span>
                 </div>
               ))}
-
             </div>
-
           </div>
-
         </div>
-
       </section>
 
+      {/* What Success Means */}
+      <section className="dark-section-alt border-y border-white/5 py-20 md:py-28">
+        <div className="page-container">
+          <div className="mx-auto max-w-3xl text-center">
+            <span className="section-label justify-center">
+              What Success Means
+            </span>
+
+            <h2 className="mt-5 text-3xl font-bold text-white md:text-4xl">
+              More than filling a position.
+            </h2>
+
+            <p className="mt-5 leading-7 text-slate-400">
+              We believe successful recruitment creates value for everyone
+              involved in the journey.
+            </p>
+          </div>
+
+          <div className="mt-12 grid gap-5 md:grid-cols-3">
+            {[
+              {
+                title: "Right Opportunity",
+                text: "Candidates can move toward roles that better match their skills and career direction.",
+              },
+              {
+                title: "Right Talent",
+                text: "Employers can connect with candidates aligned with their hiring requirements.",
+              },
+              {
+                title: "Right Connection",
+                text: "Institutions and partners can build stronger links with the employment ecosystem.",
+              },
+            ].map((item, index) => (
+              <div
+                key={item.title}
+                className="premium-card p-7 animate-fade-up"
+                style={{ animationDelay: `${index * 100}ms` }}
+              >
+                <div className="mb-6 flex h-12 w-12 items-center justify-center rounded-xl bg-blue-500/10 text-xl text-blue-400">
+                  {index + 1}
+                </div>
+
+                <h3 className="text-xl font-semibold text-white">
+                  {item.title}
+                </h3>
+
+                <p className="mt-3 text-sm leading-7 text-slate-400">
+                  {item.text}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
 
       {/* CTA */}
-      <section className="bg-blue-600 py-20 text-white">
+      <section className="relative overflow-hidden py-20 md:py-28">
+        <div className="blue-orb left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2" />
 
-        <div className="mx-auto max-w-4xl px-6 text-center lg:px-8">
+        <div className="page-container relative">
+          <div className="premium-card blue-glow mx-auto max-w-4xl p-8 text-center md:p-12">
+            <span className="section-label justify-center">
+              Be Part of the Journey
+            </span>
 
-          <p className="text-sm font-semibold uppercase tracking-widest text-blue-100">
-            Grow With Us
-          </p>
+            <h2 className="mt-5 text-3xl font-bold text-white md:text-4xl">
+              Your next opportunity or your next hire could start here.
+            </h2>
 
-          <h2 className="mt-3 text-3xl font-bold sm:text-4xl">
-            Let's Create More Success Together
-          </h2>
+            <p className="mx-auto mt-5 max-w-2xl leading-7 text-slate-400">
+              Connect with Career Solutions and take the next step toward your
+              career or hiring goals.
+            </p>
 
-          <p className="mx-auto mt-5 max-w-2xl leading-7 text-blue-100">
-            Whether you are looking for the right talent, your next
-            career opportunity or a recruitment partnership, we are
-            here to help.
-          </p>
+            <div className="mt-8 flex flex-col justify-center gap-4 sm:flex-row">
+              <Link to="/contact" className="btn-primary">
+                Get Started →
+              </Link>
 
-          <div className="mt-8 flex flex-wrap justify-center gap-4">
-
-            <button className="rounded-lg bg-white px-7 py-3 font-semibold text-blue-600 transition hover:bg-gray-100">
-              Hire Talent
-            </button>
-
-            <button className="rounded-lg border border-white px-7 py-3 font-semibold text-white transition hover:bg-white hover:text-blue-600">
-              Find Jobs
-            </button>
-
+              <Link to="/services" className="btn-secondary">
+                Explore Services
+              </Link>
+            </div>
           </div>
-
         </div>
-
       </section>
-
     </div>
   );
-};
+}
 
 export default SuccessImpact;
-

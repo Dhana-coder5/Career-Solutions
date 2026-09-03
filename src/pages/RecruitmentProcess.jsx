@@ -1,483 +1,316 @@
+import { Link } from "react-router-dom";
 
-const RecruitmentProcess = () => {
-  const processSteps = [
-    {
-      number: "01",
-      title: "Requirement",
-      description:
-        "We understand the employer's hiring requirements, job roles, skills, experience and workforce needs.",
-    },
-    {
-      number: "02",
-      title: "Sourcing",
-      description:
-        "We identify and source suitable candidates through our recruitment network and talent pool.",
-    },
-    {
-      number: "03",
-      title: "Screening",
-      description:
-        "Candidate profiles are reviewed and screened based on the required qualifications and job criteria.",
-    },
-    {
-      number: "04",
-      title: "Shortlisting",
-      description:
-        "Relevant candidates are shortlisted and presented to the employer for further evaluation.",
-    },
-    {
-      number: "05",
-      title: "Interview",
-      description:
-        "We coordinate interviews between shortlisted candidates and the employer's hiring team.",
-    },
-    {
-      number: "06",
-      title: "Selection",
-      description:
-        "Selected candidates are supported through the final selection and offer process.",
-    },
-    {
-      number: "07",
-      title: "Joining",
-      description:
-        "We assist candidates and employers with joining coordination and onboarding communication.",
-    },
-    {
-      number: "08",
-      title: "Post-Placement Support",
-      description:
-        "We continue to support employers and candidates after placement to ensure a smooth recruitment experience.",
-    },
-  ];
+const processSteps = [
+  {
+    number: "01",
+    title: "Understand Requirements",
+    text: "We begin by understanding the employer's hiring requirements, roles, skills, experience, and workforce needs.",
+  },
+  {
+    number: "02",
+    title: "Talent Sourcing",
+    text: "Relevant candidates are identified through suitable recruitment and talent sourcing channels.",
+  },
+  {
+    number: "03",
+    title: "Candidate Screening",
+    text: "Candidate profiles are reviewed against the required qualifications, skills, and role expectations.",
+  },
+  {
+    number: "04",
+    title: "Shortlisting",
+    text: "Suitable profiles are shortlisted and organized according to the employer's requirements.",
+  },
+  {
+    number: "05",
+    title: "Interview Coordination",
+    text: "We support communication and coordination between candidates and employers throughout the interview stage.",
+  },
+  {
+    number: "06",
+    title: "Candidate Evaluation",
+    text: "Candidates progress through the employer's evaluation and selection process.",
+  },
+  {
+    number: "07",
+    title: "Selection & Offer",
+    text: "Selected candidates move forward with the employer's offer and onboarding procedures.",
+  },
+  {
+    number: "08",
+    title: "Joining Support",
+    text: "We provide coordination support through the final stages of the recruitment journey.",
+  },
+];
 
+function RecruitmentProcess() {
   return (
-    <div className="min-h-screen bg-white text-gray-900">
+    <div className="dark-page min-h-screen">
+      {/* Hero */}
+      <section className="relative overflow-hidden border-b border-white/5">
+        <div className="blue-orb -left-40 top-10" />
+        <div className="blue-orb -right-40 bottom-0" />
 
-      {/* Hero Section */}
-      <section className="bg-gray-900 text-white">
-        <div className="mx-auto max-w-7xl px-6 py-20 lg:px-8">
+        <div className="page-container relative py-24 md:py-32">
+          <div className="max-w-4xl animate-fade-up">
+            <span className="section-label">Our Recruitment Process</span>
 
-          <p className="text-sm font-semibold uppercase tracking-widest text-blue-400">
-            Our Process
-          </p>
+            <h1 className="mt-6 text-4xl font-bold leading-tight text-white sm:text-5xl md:text-6xl">
+              A structured path from
+              <span className="gradient-text"> requirement to hiring.</span>
+            </h1>
 
-          <h1 className="mt-4 max-w-4xl text-4xl font-bold leading-tight sm:text-5xl lg:text-6xl">
-            Our Recruitment
-            <br />
-            Process
-          </h1>
+            <p className="mt-6 max-w-2xl text-base leading-8 text-slate-400 md:text-lg">
+              A clear and coordinated recruitment journey designed to connect
+              employers with suitable talent while keeping the process
+              organized and efficient.
+            </p>
 
-          <p className="mt-6 max-w-3xl text-lg leading-8 text-gray-300">
-            A structured, transparent and candidate-focused recruitment
-            process designed to connect employers with the right talent
-            from requirement to successful joining.
-          </p>
+            <div className="mt-8 flex flex-col gap-4 sm:flex-row">
+              <Link to="/employers" className="btn-primary">
+                Start Hiring →
+              </Link>
 
-          <div className="mt-8 flex flex-wrap gap-4">
-
-            <button className="rounded-lg bg-blue-600 px-6 py-3 font-semibold text-white transition hover:bg-blue-700">
-              Hire Talent
-            </button>
-
-            <button className="rounded-lg border border-white px-6 py-3 font-semibold text-white transition hover:bg-white hover:text-gray-900">
-              Find Jobs
-            </button>
-
+              <Link to="/jobs" className="btn-secondary">
+                Find Jobs
+              </Link>
+            </div>
           </div>
-
         </div>
       </section>
 
-
-      {/* Process Overview */}
-      <section className="py-20">
-
-        <div className="mx-auto max-w-7xl px-6 lg:px-8">
-
+      {/* Process */}
+      <section className="dark-section py-20 md:py-28">
+        <div className="page-container">
           <div className="mx-auto max-w-3xl text-center">
+            <span className="section-label justify-center">
+              How We Work
+            </span>
 
-            <p className="text-sm font-semibold uppercase tracking-widest text-blue-600">
-              How It Works
-            </p>
-
-            <h2 className="mt-3 text-3xl font-bold sm:text-4xl">
-              From Requirement to Post-Placement Support
+            <h2 className="mt-5 text-3xl font-bold text-white md:text-4xl">
+              Eight steps. One clear journey.
             </h2>
 
-            <p className="mt-5 leading-7 text-gray-600">
-              Our end-to-end recruitment process ensures that every
-              stage of hiring is handled with proper coordination,
-              communication and support.
+            <p className="mt-5 leading-7 text-slate-400">
+              From understanding the requirement to supporting the joining
+              stage, every step is designed to keep recruitment focused and
+              coordinated.
             </p>
-
           </div>
 
+          <div className="relative mt-16">
+            {/* Desktop connecting line */}
+            <div className="absolute left-1/2 top-0 hidden h-full w-px -translate-x-1/2 bg-gradient-to-b from-blue-500/0 via-blue-500/40 to-blue-500/0 lg:block" />
 
-          {/* Process Flow */}
-          <div className="mt-16">
+            <div className="space-y-8 lg:space-y-12">
+              {processSteps.map((step, index) => {
+                const isLeft = index % 2 === 0;
 
-            <div className="hidden items-center lg:flex">
+                return (
+                  <div
+                    key={step.number}
+                    className={`relative flex animate-fade-up ${
+                      isLeft ? "lg:justify-start" : "lg:justify-end"
+                    }`}
+                    style={{
+                      animationDelay: `${index * 100}ms`,
+                    }}
+                  >
+                    <div className="w-full lg:w-[46%]">
+                      <div className="premium-card group p-6 md:p-8">
+                        <div className="flex items-start gap-5">
+                          <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl border border-blue-400/20 bg-blue-500/10 text-sm font-bold text-blue-400 transition-transform duration-300 group-hover:scale-110">
+                            {step.number}
+                          </div>
 
-              {processSteps.map((step, index) => (
-                <div
-                  key={step.number}
-                  className="flex flex-1 items-center"
-                >
+                          <div>
+                            <h3 className="text-xl font-semibold text-white">
+                              {step.title}
+                            </h3>
 
-                  <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-blue-600 text-sm font-bold text-white">
-                    {step.number}
+                            <p className="mt-3 text-sm leading-7 text-slate-400">
+                              {step.text}
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Timeline dot */}
+                    <div className="absolute left-1/2 top-8 hidden h-4 w-4 -translate-x-1/2 rounded-full border-4 border-brand-950 bg-blue-500 shadow-[0_0_20px_rgba(59,130,246,0.5)] lg:block" />
                   </div>
-
-                  {index < processSteps.length - 1 && (
-                    <div className="h-0.5 flex-1 bg-blue-200" />
-                  )}
-
-                </div>
-              ))}
-
+                );
+              })}
             </div>
-
-
-            {/* Desktop Process Titles */}
-            <div className="mt-6 hidden grid-cols-8 gap-4 lg:grid">
-
-              {processSteps.map((step) => (
-                <div key={step.number}>
-
-                  <h3 className="text-sm font-bold">
-                    {step.title}
-                  </h3>
-
-                </div>
-              ))}
-
-            </div>
-
-
-            {/* Mobile / Tablet Process */}
-            <div className="mt-8 space-y-5 lg:hidden">
-
-              {processSteps.map((step) => (
-                <div
-                  key={step.number}
-                  className="flex gap-5 rounded-2xl border border-gray-200 bg-white p-5 shadow-sm"
-                >
-
-                  <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-blue-600 text-sm font-bold text-white">
-                    {step.number}
-                  </div>
-
-                  <div>
-
-                    <h3 className="text-lg font-bold">
-                      {step.title}
-                    </h3>
-
-                    <p className="mt-2 leading-6 text-gray-600">
-                      {step.description}
-                    </p>
-
-                  </div>
-
-                </div>
-              ))}
-
-            </div>
-
           </div>
-
         </div>
-
       </section>
 
-
-      {/* Detailed Process */}
-      <section className="bg-gray-50 py-20">
-
-        <div className="mx-auto max-w-7xl px-6 lg:px-8">
-
-          <div className="mx-auto max-w-2xl text-center">
-
-            <p className="text-sm font-semibold uppercase tracking-widest text-blue-600">
-              End-to-End Recruitment
-            </p>
-
-            <h2 className="mt-3 text-3xl font-bold sm:text-4xl">
-              Every Step, Properly Coordinated
-            </h2>
-
-            <p className="mt-4 leading-7 text-gray-600">
-              From understanding the requirement to supporting
-              candidates after placement, we stay involved throughout
-              the recruitment journey.
-            </p>
-
-          </div>
-
-
-          <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-
-            {processSteps.map((step) => (
-              <div
-                key={step.number}
-                className="group rounded-2xl border border-gray-200 bg-white p-7 transition duration-300 hover:-translate-y-1 hover:border-blue-200 hover:shadow-xl"
-              >
-
-                <div className="flex items-center justify-between">
-
-                  <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-blue-100 font-bold text-blue-600 transition group-hover:bg-blue-600 group-hover:text-white">
-                    {step.number}
-                  </div>
-
-                  <span className="text-4xl font-bold text-gray-100">
-                    {step.number}
-                  </span>
-
-                </div>
-
-
-                <h3 className="mt-6 text-xl font-bold">
-                  {step.title}
-                </h3>
-
-                <p className="mt-4 leading-7 text-gray-600">
-                  {step.description}
-                </p>
-
-              </div>
-            ))}
-
-          </div>
-
-        </div>
-
-      </section>
-
-
-      {/* Employer & Candidate Journey */}
-      <section className="py-20">
-
-        <div className="mx-auto max-w-7xl px-6 lg:px-8">
-
+      {/* Employer / Candidate Journey */}
+      <section className="dark-section-alt border-y border-white/5 py-20 md:py-28">
+        <div className="page-container">
           <div className="grid gap-6 lg:grid-cols-2">
-
             {/* Employer */}
-            <div className="rounded-3xl bg-gray-900 p-8 text-white lg:p-10">
+            <div className="premium-card p-8 md:p-10">
+              <span className="section-label">For Employers</span>
 
-              <p className="text-sm font-semibold uppercase tracking-widest text-blue-400">
-                For Employers
-              </p>
-
-              <h2 className="mt-4 text-3xl font-bold">
-                A Simple Hiring Experience
+              <h2 className="mt-5 text-3xl font-bold text-white">
+                Build your team with confidence.
               </h2>
 
-              <p className="mt-5 leading-7 text-gray-300">
-                We help employers move efficiently from sharing a
-                requirement to finding and onboarding suitable talent.
+              <p className="mt-5 leading-7 text-slate-400">
+                Share your hiring requirements with us and let our recruitment
+                process support your search for suitable talent.
               </p>
 
               <div className="mt-8 space-y-4">
-
                 {[
-                  "Understand hiring requirements",
-                  "Source suitable candidates",
-                  "Screen and shortlist profiles",
+                  "Share your requirement",
+                  "Receive suitable profiles",
                   "Coordinate interviews",
-                  "Support selection and joining",
+                  "Select the right candidates",
                 ].map((item, index) => (
-                  <div
-                    key={item}
-                    className="flex items-center gap-4"
-                  >
-
-                    <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-blue-600 text-sm font-bold">
+                  <div key={item} className="flex items-center gap-4">
+                    <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-blue-500/10 text-sm font-semibold text-blue-400">
                       {index + 1}
                     </span>
 
-                    <span className="text-gray-200">
-                      {item}
-                    </span>
-
+                    <span className="text-sm text-slate-300">{item}</span>
                   </div>
                 ))}
-
               </div>
 
+              <Link to="/employers" className="btn-primary mt-8">
+                Hire Talent →
+              </Link>
             </div>
-
 
             {/* Candidate */}
-            <div className="rounded-3xl bg-blue-600 p-8 text-white lg:p-10">
+            <div className="premium-card p-8 md:p-10">
+              <span className="section-label">For Candidates</span>
 
-              <p className="text-sm font-semibold uppercase tracking-widest text-blue-100">
-                For Candidates
-              </p>
-
-              <h2 className="mt-4 text-3xl font-bold">
-                Support Throughout Your Career Journey
+              <h2 className="mt-5 text-3xl font-bold text-white">
+                Move toward your next opportunity.
               </h2>
 
-              <p className="mt-5 leading-7 text-blue-100">
-                Candidates receive guidance and coordination throughout
-                the recruitment process, from application to joining and
-                beyond.
+              <p className="mt-5 leading-7 text-slate-400">
+                Explore opportunities that match your skills, experience, and
+                career direction.
               </p>
 
               <div className="mt-8 space-y-4">
-
                 {[
                   "Explore suitable opportunities",
-                  "Profile screening and shortlisting",
-                  "Interview coordination",
-                  "Selection and offer support",
-                  "Joining and post-placement assistance",
+                  "Share your profile",
+                  "Complete the selection process",
+                  "Move toward your career goal",
                 ].map((item, index) => (
-                  <div
-                    key={item}
-                    className="flex items-center gap-4"
-                  >
-
-                    <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-white text-sm font-bold text-blue-600">
+                  <div key={item} className="flex items-center gap-4">
+                    <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-blue-500/10 text-sm font-semibold text-blue-400">
                       {index + 1}
                     </span>
 
-                    <span className="text-blue-50">
-                      {item}
-                    </span>
-
+                    <span className="text-sm text-slate-300">{item}</span>
                   </div>
                 ))}
-
               </div>
 
+              <Link to="/jobs" className="btn-secondary mt-8">
+                Explore Jobs →
+              </Link>
             </div>
-
           </div>
-
         </div>
-
       </section>
 
+      {/* Benefits */}
+      <section className="dark-section py-20 md:py-28">
+        <div className="page-container">
+          <div className="max-w-3xl">
+            <span className="section-label">Why Our Process</span>
 
-      {/* Key Benefits */}
-      <section className="bg-gray-50 py-20">
-
-        <div className="mx-auto max-w-7xl px-6 lg:px-8">
-
-          <div className="mx-auto max-w-2xl text-center">
-
-            <p className="text-sm font-semibold uppercase tracking-widest text-blue-600">
-              Our Approach
-            </p>
-
-            <h2 className="mt-3 text-3xl font-bold sm:text-4xl">
-              Why Our Process Works
+            <h2 className="mt-5 text-3xl font-bold text-white md:text-4xl">
+              Recruitment built around clarity and coordination.
             </h2>
 
+            <p className="mt-5 leading-7 text-slate-400">
+              A structured approach helps keep employers, candidates, and
+              recruitment teams aligned throughout the hiring journey.
+            </p>
           </div>
 
+          <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+            {[
+              {
+                title: "Structured",
+                text: "A clear recruitment flow from requirement to joining.",
+              },
+              {
+                title: "Focused",
+                text: "Hiring activities are aligned with role-specific requirements.",
+              },
+              {
+                title: "Coordinated",
+                text: "Communication between stakeholders remains organized.",
+              },
+              {
+                title: "Flexible",
+                text: "The approach can adapt to different hiring requirements.",
+              },
+            ].map((item, index) => (
+              <div
+                key={item.title}
+                className="premium-card p-6 animate-fade-up"
+                style={{ animationDelay: `${index * 100}ms` }}
+              >
+                <div className="mb-5 h-1 w-10 rounded-full bg-blue-500" />
 
-          <div className="mt-12 grid gap-6 md:grid-cols-3">
+                <h3 className="text-lg font-semibold text-white">
+                  {item.title}
+                </h3>
 
-            <div className="rounded-2xl border border-gray-200 bg-white p-8 text-center">
-
-              <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-xl bg-blue-100 text-xl font-bold text-blue-600">
-                01
+                <p className="mt-3 text-sm leading-6 text-slate-400">
+                  {item.text}
+                </p>
               </div>
-
-              <h3 className="mt-6 text-xl font-bold">
-                Structured
-              </h3>
-
-              <p className="mt-3 leading-7 text-gray-600">
-                A clearly defined recruitment workflow helps ensure
-                every hiring stage is properly managed.
-              </p>
-
-            </div>
-
-
-            <div className="rounded-2xl border border-gray-200 bg-white p-8 text-center">
-
-              <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-xl bg-blue-100 text-xl font-bold text-blue-600">
-                02
-              </div>
-
-              <h3 className="mt-6 text-xl font-bold">
-                Efficient
-              </h3>
-
-              <p className="mt-3 leading-7 text-gray-600">
-                Coordinated sourcing, screening and interviews help
-                simplify the recruitment process.
-              </p>
-
-            </div>
-
-
-            <div className="rounded-2xl border border-gray-200 bg-white p-8 text-center">
-
-              <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-xl bg-blue-100 text-xl font-bold text-blue-600">
-                03
-              </div>
-
-              <h3 className="mt-6 text-xl font-bold">
-                Supportive
-              </h3>
-
-              <p className="mt-3 leading-7 text-gray-600">
-                Our support continues through joining and post-placement
-                to create a smoother experience.
-              </p>
-
-            </div>
-
+            ))}
           </div>
-
         </div>
-
       </section>
-
 
       {/* Final CTA */}
-      <section className="bg-blue-600 py-20 text-white">
+      <section className="relative overflow-hidden py-20 md:py-28">
+        <div className="blue-orb left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2" />
 
-        <div className="mx-auto max-w-4xl px-6 text-center lg:px-8">
+        <div className="page-container relative">
+          <div className="premium-card blue-glow mx-auto max-w-4xl p-8 text-center md:p-12">
+            <span className="section-label justify-center">
+              Ready to Begin?
+            </span>
 
-          <p className="text-sm font-semibold uppercase tracking-widest text-blue-100">
-            Start Today
-          </p>
+            <h2 className="mt-5 text-3xl font-bold text-white md:text-4xl">
+              Let's connect the right people with the right opportunities.
+            </h2>
 
-          <h2 className="mt-3 text-3xl font-bold sm:text-4xl">
-            Let's Connect the Right Talent With the Right Opportunity
-          </h2>
+            <p className="mx-auto mt-5 max-w-2xl leading-7 text-slate-400">
+              Whether you are hiring talent or looking for your next
+              opportunity, take the next step with Career Solutions.
+            </p>
 
-          <p className="mx-auto mt-5 max-w-2xl leading-7 text-blue-100">
-            Whether you are an employer looking to hire or a candidate
-            searching for your next opportunity, our team is ready to
-            support you.
-          </p>
+            <div className="mt-8 flex flex-col justify-center gap-4 sm:flex-row">
+              <Link to="/contact" className="btn-primary">
+                Get Started →
+              </Link>
 
-          <div className="mt-8 flex flex-wrap justify-center gap-4">
-
-            <button className="rounded-lg bg-white px-7 py-3 font-semibold text-blue-600 transition hover:bg-gray-100">
-              Hire Talent
-            </button>
-
-            <button className="rounded-lg border border-white px-7 py-3 font-semibold text-white transition hover:bg-white hover:text-blue-600">
-              Find Jobs
-            </button>
-
+              <Link to="/services" className="btn-secondary">
+                View Services
+              </Link>
+            </div>
           </div>
-
         </div>
-
       </section>
-
     </div>
   );
-};
+}
 
 export default RecruitmentProcess;

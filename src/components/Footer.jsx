@@ -1,134 +1,189 @@
-
 import { Link } from "react-router-dom";
+import logo from "../assets/logo.png";
 
 function Footer() {
+  const currentYear = new Date().getFullYear();
+
   return (
-    <footer className="bg-gray-900 text-white mt-auto">
-      <div className="max-w-7xl mx-auto px-6 py-10">
+    <footer className="relative overflow-hidden border-t border-white/10 bg-brand-950">
 
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+      {/* Background glow */}
+      <div className="blue-orb -left-32 top-10 opacity-40" />
+      <div className="blue-orb -right-32 bottom-0 opacity-30" />
 
-          {/* Company */}
-          <div>
-            <h2 className="text-xl font-bold mb-4">
-              Career Solutions
-            </h2>
+      <div className="page-container relative">
 
-            <p className="text-gray-400 leading-6">
-              Hire Talent. Build Careers. Grow Together.
+        {/* Main Footer */}
+        <div className="grid gap-12 py-16 md:grid-cols-2 lg:grid-cols-4">
+
+          {/* Brand */}
+          <div className="lg:col-span-1">
+            <Link to="/" className="inline-block">
+              <img
+                src={logo}
+                alt="Career Solutions"
+                className="h-12 w-auto object-contain"
+              />
+            </Link>
+
+            <p className="mt-5 max-w-sm text-sm leading-7 text-slate-400">
+              Connecting employers with the right talent across IT,
+              Non-IT and Banking sectors.
             </p>
 
-            <p className="text-gray-400 mt-3 leading-6">
-              Connecting employers with the right talent
-              across IT, Non-IT & Banking sectors.
+            <p className="mt-4 text-sm font-medium text-slate-300">
+              Hire Talent. Build Careers. Grow Together.
             </p>
           </div>
 
           {/* Quick Links */}
           <div>
-            <h3 className="text-lg font-semibold mb-4">
+            <h3 className="text-sm font-semibold uppercase tracking-wider text-white">
               Quick Links
             </h3>
 
-            <div className="flex flex-col gap-2">
-
-              <Link
-                to="/"
-                className="text-gray-400 hover:text-white"
-              >
-                Home
-              </Link>
-
-              <Link
-                to="/about"
-                className="text-gray-400 hover:text-white"
-              >
-                About Us
-              </Link>
-
-              <Link
-                to="/services"
-                className="text-gray-400 hover:text-white"
-              >
-                Services
-              </Link>
-
-              <Link
-                to="/jobs"
-                className="text-gray-400 hover:text-white"
-              >
-                Jobs
-              </Link>
-
+            <div className="mt-5 space-y-3">
+              {[
+                ["Home", "/"],
+                ["About Us", "/about"],
+                ["Services", "/services"],
+                ["Industries", "/industries"],
+                ["Jobs", "/jobs"],
+              ].map(([name, path]) => (
+                <Link
+                  key={path}
+                  to={path}
+                  className="group flex items-center gap-2 text-sm text-slate-400 transition-colors duration-300 hover:text-blue-400"
+                >
+                  <span className="text-blue-500 opacity-0 transition-all duration-300 group-hover:translate-x-1 group-hover:opacity-100">
+                    →
+                  </span>
+                  {name}
+                </Link>
+              ))}
             </div>
           </div>
 
           {/* Services */}
           <div>
-            <h3 className="text-lg font-semibold mb-4">
-              Services
+            <h3 className="text-sm font-semibold uppercase tracking-wider text-white">
+              Our Services
             </h3>
 
-            <div className="flex flex-col gap-2">
-
-              <Link
-                to="/employers"
-                className="text-gray-400 hover:text-white"
-              >
-                Hire Talent
-              </Link>
-
-              <Link
-                to="/jobs"
-                className="text-gray-400 hover:text-white"
-              >
-                Find Jobs
-              </Link>
-
-              <Link
-                to="/vendor-partnership"
-                className="text-gray-400 hover:text-white"
-              >
-                Vendor Partnership
-              </Link>
-
-              {/* Fixed route */}
-              <Link
-                to="/campus-drive"
-                className="text-gray-400 hover:text-white"
-              >
-                Campus Drives
-              </Link>
-
+            <div className="mt-5 space-y-3">
+              {[
+                ["Employers", "/employers"],
+                ["Jobs", "/jobs"],
+                ["Campus Drives", "/campus-drive"],
+                ["Vendor Partnership", "/vendor-partnership"],
+              ].map(([name, path]) => (
+                <Link
+                  key={path}
+                  to={path}
+                  className="group flex items-center gap-2 text-sm text-slate-400 transition-colors duration-300 hover:text-blue-400"
+                >
+                  <span className="text-blue-500 opacity-0 transition-all duration-300 group-hover:translate-x-1 group-hover:opacity-100">
+                    →
+                  </span>
+                  {name}
+                </Link>
+              ))}
             </div>
           </div>
 
           {/* Contact */}
           <div>
-            <h3 className="text-lg font-semibold mb-4">
-              Contact Us
+            <h3 className="text-sm font-semibold uppercase tracking-wider text-white">
+              Get In Touch
             </h3>
 
-            <p className="text-gray-400 mb-2">
-              Chennai, Tamil Nadu, India
-            </p>
+            <div className="mt-5 space-y-5">
 
-            <p className="text-gray-400 mb-2">
-              Email: info@careersolutions.com
-            </p>
+              <div>
+                <p className="text-xs uppercase tracking-wider text-slate-500">
+                  Location
+                </p>
+                <p className="mt-1 text-sm text-slate-300">
+                  Chennai, Tamil Nadu
+                </p>
+              </div>
 
-            <p className="text-gray-400">
-              Phone: +91 98764 25364
-            </p>
+              <div>
+                <p className="text-xs uppercase tracking-wider text-slate-500">
+                  Email
+                </p>
+                <a
+                  href="mailto:info@careersolutions.com"
+                  className="mt-1 block text-sm text-slate-300 transition-colors hover:text-blue-400"
+                >
+                  info@careersolutions.com
+                </a>
+              </div>
+
+              <div>
+                <p className="text-xs uppercase tracking-wider text-slate-500">
+                  Phone
+                </p>
+                <a
+                  href="tel:+919876425364"
+                  className="mt-1 block text-sm text-slate-300 transition-colors hover:text-blue-400"
+                >
+                  +91 98764 25364
+                </a>
+              </div>
+
+            </div>
           </div>
+        </div>
 
+        {/* CTA Strip */}
+        <div className="mb-10 overflow-hidden rounded-2xl border border-blue-500/20 bg-gradient-to-r from-blue-600/10 via-blue-500/5 to-transparent p-6">
+          <div className="flex flex-col items-start justify-between gap-5 md:flex-row md:items-center">
+
+            <div>
+              <h3 className="text-lg font-semibold text-white">
+                Ready to build your next opportunity?
+              </h3>
+
+              <p className="mt-1 text-sm text-slate-400">
+                Let's connect talent with the right possibilities.
+              </p>
+            </div>
+
+            <Link
+              to="/contact"
+              className="btn-primary whitespace-nowrap"
+            >
+              Contact Us
+              <span>→</span>
+            </Link>
+
+          </div>
         </div>
 
         {/* Bottom */}
-        <div className="border-t border-gray-700 mt-8 pt-6 text-center">
-          <p className="text-gray-500">
-            © {new Date().getFullYear()} Career Solutions. All rights reserved.
+        <div className="flex flex-col gap-4 border-t border-white/10 py-6 text-sm md:flex-row md:items-center md:justify-between">
+
+          <p className="text-slate-500">
+            © {currentYear} Career Solutions Pvt Ltd. All rights reserved.
           </p>
+
+          <div className="flex gap-5">
+            <Link
+              to="/contact"
+              className="text-slate-500 transition-colors hover:text-blue-400"
+            >
+              Contact
+            </Link>
+
+            <Link
+              to="/jobs"
+              className="text-slate-500 transition-colors hover:text-blue-400"
+            >
+              Find Jobs
+            </Link>
+          </div>
+
         </div>
 
       </div>
